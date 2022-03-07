@@ -19,6 +19,7 @@ function App() {
         </a>
       </header> */}
       <p>Hola mundito del canabic </p>
+      <p>123</p>
     </div>
   );
 }
