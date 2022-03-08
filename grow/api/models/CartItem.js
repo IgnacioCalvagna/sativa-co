@@ -1,17 +1,17 @@
-const { Model, DataTypes } = require('sequelize');
-const db = require('../db');
+const { Model, DataTypes } = require("sequelize");
+const db = require("../db");
 
 class CartItem extends Model {}
 
 CartItem.init(
   {
     quantity: {
-      type: DataTypes.INT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
 
-  { sequelize: db, tableName: 'cartItem' }
+  { sequelize: db, tableName: "cartItems" }
 );
 
 module.exports = CartItem;

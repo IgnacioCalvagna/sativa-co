@@ -15,7 +15,10 @@ OrderDetail.init(
       allowNull: false,
     },
   },
-  { sequelize: db, modelName: "OrderDetails" }
+  { 
+    sequelize: db,
+    modelName: "orderDetails" 
+  }
 );
 
 module.exports = OrderDetail;

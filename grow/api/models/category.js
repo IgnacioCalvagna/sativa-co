@@ -14,14 +14,12 @@ Category.init(
         description: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
+        }
 
     },
     {   
-        sequence: db,
-        modelName: "category"
-    })
-
-
+        sequelize: db,
+        modelName: "categories"
+    });
 
     module.exports = Category; 

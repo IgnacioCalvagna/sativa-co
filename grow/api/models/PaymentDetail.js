@@ -4,7 +4,7 @@ const { Model, DataTypes } = require("sequelize");
 
 class PaymentDetail extends Model {}
 
-Product.init(
+PaymentDetail.init(
   {
     amount: {
       type: DataTypes.DECIMAL,
@@ -19,7 +19,7 @@ Product.init(
         allowNull: false,
       },
   },
-  { sequelize: db, modelName: "PaymentDetails" }
+  { sequelize: db, modelName: "paymentDetails" }
 );
 
 module.exports = PaymentDetail;

@@ -2,9 +2,9 @@ const { Model, DataTypes} = require('sequelize');
 const db = require("../db");
 
 
-class Order_item extends Model {}
+class OrderItem extends Model {}
 
-Order_item.init(
+OrderItem.init(
     {
         price:{
             type: DataTypes.DECIMAL,
@@ -17,8 +17,8 @@ Order_item.init(
     },
     {
         sequelize:db,
-        modelName: 'order_item',
+        modelName: 'orderItems',
     }); 
 
 
-    module.exports = Order_item;
+    module.exports = OrderItem;
