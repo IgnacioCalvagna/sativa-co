@@ -6,7 +6,7 @@ const app = express();
 
 const db = require('./db');
 
-const bodyParser = require('./bodyParser');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 const morgan = require('morgan');
 
@@ -82,7 +82,7 @@ app.use('/api', routes);
 
 const port = 3001;
 
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   app.listen(port, function () {
     console.log(`Listening on port ${port}!`);
   });

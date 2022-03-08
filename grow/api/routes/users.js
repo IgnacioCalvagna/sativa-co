@@ -3,6 +3,12 @@ const router = express.Router();
 const passport = require("passport");
 const User = require("../models");
 
+
+
+router.get('/',(req, res)=>{
+  entre:entre 
+})
+
 router.post("/register", (req, res) => {
   User.create(req.body).then((user) => {
     res.sendStatus(201);
