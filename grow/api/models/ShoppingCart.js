@@ -11,7 +11,7 @@ ShoppingCart.init(
     },
   },
 
-  { sequelize: db, tableName: 'shoppingCarts' }
+  { sequelize: db, tableName: 'shoppingcarts' }
 );
 
 module.exports = ShoppingCart;
