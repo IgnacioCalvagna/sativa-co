@@ -1,5 +1,5 @@
-const db = require("../db");
-const { Model, DataTypes } = require("sequelize");
+const db = require('../db');
+const { Model, DataTypes } = require('sequelize');
 //const marked = require("marked");
 
 class PaymentDetail extends Model {}
@@ -15,11 +15,11 @@ PaymentDetail.init(
       allowNull: false,
     },
     status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  { sequelize: db, modelName: "paymentDetails" }
+  { sequelize: db, modelName: 'paymentdetails' }
 );
 
 module.exports = PaymentDetail;
