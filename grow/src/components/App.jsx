@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
-import './assets/css/App.css';
+import '../assets/css/App.css';
 import { useEffect , useState} from "react";
 import {  Route, Routes } from "react-router";
 import Navbar from "./Navbar.jsx";
-import Content from "./Content.jsx";
+// import Content from "./Content.jsx";
 import Grid from "./Grid.jsx";
 import axios from "axios";
 
@@ -22,12 +22,12 @@ function App() {
     <div className="container">
       <Routes>
       <Route
-            path="products/:type"
+            path="/products"
             element={
               <Grid products={products}/>
             }
           />
-        <Route path="/products" element={<Content />} />
+        {/* <Route path="/products" element={<Content />} /> */}
       </Routes>
     </div>
     </div>

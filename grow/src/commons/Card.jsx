@@ -1,4 +1,5 @@
 import ButtonsCard from "./ButtonCard";
+
 const Card = ({ data }) => {
     return (
       <div className="card">
@@ -16,11 +17,6 @@ const Card = ({ data }) => {
           <div className="media">
             <div className="media-left">
               <div className="media-content">
-                    <ul class="social">
-                        <li><a href="" ButtonsCard="Quick View"><i class="fa-search"></i></a></li>
-                        <li><a href="" ButtonsCard="Add to Wishlist"><i class="fa-shopping-bag"></i></a></li>
-                        <li><a href="" ButtonsCard="Add to Cart"><i class="fa-shopping-cart"></i></a></li>
-                    </ul>
               </div>
             </div>
           </div>
