@@ -5,9 +5,9 @@ const User = require("../models");
 
 
 
-router.get('/',(req, res)=>{
-  entre:entre 
-})
+// router.get('/',(req, res)=>{
+//   entre:entre 
+// })
 
 router.post("/register", (req, res) => {
   User.create(req.body).then((user) => {
