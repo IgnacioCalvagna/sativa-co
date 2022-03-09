@@ -82,7 +82,7 @@ app.use('/api', routes);
 
 const port = 3001;
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   app.listen(port, function () {
     console.log(`Listening on port ${port}!`);
   });

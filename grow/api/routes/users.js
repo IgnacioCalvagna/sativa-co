@@ -1,17 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const User = require("../models");
-
-
-
-// router.get('/',(req, res)=>{
-//   entre:entre 
-// })
+const { User } = require("../models");
 
 router.post("/register", (req, res) => {
   User.create(req.body).then((user) => {
-    res.sendStatus(201);
+    res.status(201).send(user);
   });
 });
 router.post("/login", passport.authenticate("local"), (req, res) => {
@@ -25,7 +19,7 @@ router.put("/:id", (req, res) => {
   const { id } = req.params;
   User.update(req.body, {
     where: {
-      id
+      id,
     },
     returning: true,
     plain: true,
@@ -37,11 +31,9 @@ router.put("/:id", (req, res) => {
   });
 });
 
-router.get('/me',(req,res)=>{
-    if(!req.user) return res.sendStatus(401)
-    res.send(req.user); 
-}); 
-
-
+router.get("/me", (req, res) => {
+  if (!req.user) return res.sendStatus(401);
+  res.send(req.user);
+});
 
 module.exports = router;
