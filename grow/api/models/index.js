@@ -9,7 +9,7 @@ const ShoppingCart = require('./ShoppingCart');
 const User = require('./User');
 
 ShoppingCart.belongsTo(User);
-User.hasOne(ShoppingCart);
+//User.hasOne(ShoppingCart);
 
 CartItem.belongsTo(ShoppingCart);
 ShoppingCart.hasMany(CartItem);
