@@ -1,12 +1,20 @@
 // import logo from './logo.svg';
-import './assets/css/App.css';
+import {useDispatch} from 'react-redux'
 import { useEffect , useState} from "react";
 import {  Route, Routes } from "react-router";
-import Navbar from "./components/Navbar";
-import Content from "./components/Content";
 import axios from "axios";
 
+import Navbar from "./Navbar";
+/* import Content from "./Content"; */
+import persistUser from "../state/user"
+
+
 function App() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(persistUser)
+  },[])
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -20,7 +28,7 @@ function App() {
     <Navbar />
     <div className="container">
       <Routes>
-        <Route path="/products" element={<Content />} />
+        {/* <Route path="/products" element={<Content />} /> */}
       </Routes>
     </div>
     </div>

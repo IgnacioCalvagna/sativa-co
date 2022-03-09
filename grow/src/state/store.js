@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
 import userReducer from "./user";
-import shoppingCartReducer from "./shoppingCartReducer"
+import shoppingCartReducer from "./shoppingCart"
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
