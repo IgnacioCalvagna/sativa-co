@@ -84,6 +84,6 @@ const port = 3001;
 
 db.sync({ force: false }).then(() => {
   app.listen(port, function () {
-    console.log(`Listening on port ${port}!`);
+    console.log(`Listening on port http://localhost:${port}`);
   });
 });
