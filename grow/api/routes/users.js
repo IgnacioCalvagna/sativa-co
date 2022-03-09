@@ -1,25 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require('passport');
-const { User } = require('../models');
+const passport = require("passport");
+const { User } = require("../models");
 
-router.get('/', (req, res) => {
-  entre: entre;
-});
-
-router.post('/register', (req, res) => {
-  User.create(req.body).then(user => {
+router.post("/register", (req, res) => {
+  User.create(req.body).then((user) => {
     res.status(201).send(user);
   });
 });
-router.post('/login', passport.authenticate('local'), (req, res) => {
+router.post("/login", passport.authenticate("local"), (req, res) => {
   res.send(req.user);
 });
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   req.logOut();
   res.sendStatus(200);
 });
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
   const { id } = req.params;
   User.update(req.body, {
     where: {
@@ -27,7 +23,7 @@ router.put('/:id', (req, res) => {
     },
     returning: true,
     plain: true,
-  }).then(result => {
+  }).then((result) => {
     const user = result[1];
     res.status(201).json({
       user,
@@ -35,7 +31,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.get('/me', (req, res) => {
+router.get("/me", (req, res) => {
   if (!req.user) return res.sendStatus(401);
   res.send(req.user);
 });
