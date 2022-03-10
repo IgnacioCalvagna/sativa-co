@@ -4,11 +4,13 @@ const passport = require('passport');
 const { User } = require('../models');
 
 router.post('/register', (req, res) => {
+  console.log(req.body);
   User.create(req.body).then(user => {
     res.status(201).send(user);
   });
 });
 router.post('/login', passport.authenticate('local'), (req, res) => {
+  console.log('fede');
   res.send(req.user);
 });
 router.post('/logout', (req, res) => {
