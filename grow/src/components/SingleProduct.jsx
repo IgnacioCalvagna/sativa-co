@@ -30,9 +30,9 @@ const SingleProduct = () => {
 
   return (
     <div className="container singleProduct">
-      <div className="row">
-        <div className="d-flex col-lg-5">
-          <div className="row thumbnails-div">
+      <div className="row" style={{justifyContent: 'center'}}>
+        <div className="d-flex col-lg-5 product-images row">
+          <div className="row thumbnails-div col-4">
             <img
               className="product-thumbnail"
               src="./pikachu.jpg"
@@ -48,6 +48,7 @@ const SingleProduct = () => {
               src="https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"
               onClick={handleImageClick}
             />
+            
           </div>
           <div className="main-image">
             <div onClick={prevImg}>{"<"}</div>
