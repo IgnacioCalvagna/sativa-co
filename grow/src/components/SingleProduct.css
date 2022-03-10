@@ -1,0 +1,19 @@
+.product-details {
+    padding: 20px;
+}
+
+.product-price {
+    align-items: center;
+}
+
+.price {
+    font-size: 1.8em;
+}
+
+.stock {
+    margin: 0 20px;
+}
+
+.buyDiv {
+    justify-content: space-between;
+}
