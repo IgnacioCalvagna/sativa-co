@@ -1,5 +1,4 @@
 import "./SingleProduct.css";
-// import "./slider.js";
 import { useState } from "react";
 
 const SingleProduct = () => {
@@ -30,8 +29,8 @@ const SingleProduct = () => {
 
   return (
     <div className="container singleProduct">
-      <div className="row" style={{justifyContent: 'center'}}>
-        <div className="d-flex col-lg-5 product-images row">
+      <div className="row" style={{ justifyContent: "center" }}>
+        <div className="row d-flex col-lg-5 product-images ">
           <div className="row thumbnails-div col-4">
             <img
               className="product-thumbnail"
@@ -48,10 +47,8 @@ const SingleProduct = () => {
               src="https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"
               onClick={handleImageClick}
             />
-            
           </div>
-          <div className="main-image">
-            <div onClick={prevImg}>{"<"}</div>
+          <div className="main-image col-8">
             <img
               id="featured"
               className="img-fluid product-img"
@@ -63,13 +60,14 @@ const SingleProduct = () => {
               }}
               src={mainSrc}
             />
-            <div onClick={nextImg}>{">"}</div>
+            <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+              <div onClick={prevImg} className="arrow">{"<"}</div>
+              <div onClick={nextImg} className="arrow">{">"}</div>
+            </div>
           </div>
         </div>
 
-        <div className=" 
-        product-detailssss 
-        col-lg-7">
+        <div className="col-lg-7">
           <h1 className="text-start product-name">Product name</h1>
           <div className="rating-div text-start">
             {" "}

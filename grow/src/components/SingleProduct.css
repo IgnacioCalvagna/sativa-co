@@ -2,6 +2,10 @@
   padding: 20px;
 }
 
+.rating-div, .product-price, .product-description, .buyDiv {
+  margin: 10px 0;
+}
+
 .product-price {
   align-items: center;
 }
@@ -26,9 +30,16 @@
 
 .product-thumbnail {
     object-fit: fill;
-    height: 100px;
 }
 
+.main-image {
+    flex-shrink: 2;
+}
+
+.arrow {
+  margin: 0 20px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 1200px) {
   .product-thumbnail,
@@ -45,7 +56,6 @@
 
 .thumbnails-div {
   height: 400px;
-  /* width: 150px; */
   overflow-y: auto;
   overflow-x: hidden;
   justify-content: center;
@@ -61,12 +71,3 @@
   display: none;
   width: 0;
 }
-
-/* .arrow {
-    font-size: 2em;
-    height: 48px;
-    width: 48px;
-    border-radius: 24px;
-    border: 2px solid black;
-    cursor: pointer;
-} */
