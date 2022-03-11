@@ -1,12 +1,13 @@
 // import logo from './logo.svg';
-import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router';
-import axios from 'axios';
-import Grid from './Grid'
-
-import Navbar from './Navbar';
-import { persistUser } from '../state/user';
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router";
+import axios from "axios";
+import Grid from "./Grid";
+import Carousel from "./Carousel";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import { persistUser } from "../state/user";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,24 +24,25 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
+    <div className="App">
       <Navbar />
-      <div className='container'>
+      <div className="container">
         <Routes>
-      <Route
-            path="/products"
+          <Route path="/products" element={<>Productos</>} />
+          <Route
+            path="/"
             element={
-              <Grid products={products}/>
+              <>
+                <Carousel/>
+                <Grid products={products} />
+              </>
             }
-          />
-          <Route path='/' element={<> hola como andas</>}></Route>
+          ></Route>
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
 
 export default App;
-
-
-

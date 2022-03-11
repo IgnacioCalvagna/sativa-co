@@ -1,0 +1,14 @@
+.footer {
+  background-color: #f8f9fa;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.logo-text {
+  font-size: 1.25em;
+  padding-left: 30px;
+}
+
+.copyright {
+  padding-left: 30px;
+}
