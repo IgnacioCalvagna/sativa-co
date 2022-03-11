@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
+import "../style/Login.css"
+import useInput from '../hooks/useInput';
 import {
   sendLoginRequest,
   sendSignUpRequest,
   sendLogoutRequest,
 } from '../state/user';
 
-import useInput from '../hooks/useInput';
-import { useNavigate } from 'react-router';
+
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -252,7 +255,7 @@ export const Login = () => {
             <li>
               <button
                 type='button'
-                className='btn btn-primary'
+                className='buttonLogin'
                 data-bs-toggle='modal'
                 data-bs-target='#loginModal'
                 data-bs-whatever='@mdo'
@@ -263,7 +266,7 @@ export const Login = () => {
             <li>
               <button
                 type='button'
-                className='btn btn-primary'
+                className='buttonLogin'
                 data-bs-toggle='modal'
                 data-bs-target='#registerModal'
                 data-bs-whatever='@getbootstrap'
@@ -274,7 +277,7 @@ export const Login = () => {
           </div>
         ) : (
           <li>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="buttonLogin" onClick={handleLogout}>Logout</button>
           </li>
         )}
       </div>
