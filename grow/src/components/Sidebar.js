@@ -4,6 +4,12 @@ import "../style/Navbar.css"
 export const Sidebar = ()=>{
     return(
         <div>
+        ￼
+
+        ￼
+
+￼
+        
             <a className="iconNavbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><ion-icon name="cart-outline"></ion-icon></a>
 
             <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
