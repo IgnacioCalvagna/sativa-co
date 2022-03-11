@@ -62,42 +62,52 @@ const Cart = () => {
         })
         setItems(itemsAux)
     }
-    console.log("---->",items.map(({ quantity, price }) =>  quantity * price ).reduce((total, i )=>total+i,0))
+    console.log("---->", items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0))
 
     return (<>
         <div className="containerSidebar">
-            <div className="titleCart">
-                <h>producto</h>
-                <h>subtotal</h>
-            </div>
-            <>{
-                items.map(({ name, id, price, quantity, quantityStock }, i) => {
-                    return (
+            <div>
+                <div className="titleCart">
+                    <h>producto</h>
+                    <h>subtotal</h>
+                </div>
+                <>{
+                    items.map(({ name, id, price, quantity, quantityStock }, i) => {
+                        return (
 
-                        <div key={id} className="containerCart">
-                            <div className="itemImg"><ion-icon name="leaf-outline"></ion-icon></div>
-                            <div className="subContainerCart">
-                                <div>
-                                    <li className="dataItem">{name}</li>
-                                    <li className="dataItem">${price}</li>
-                                    <li className="quantityItem">
-                                        <button type="button" className="buttonQuantity" onClick={() => resta(id)}>-</button>
-                                        <p className="quantity">{quantity}</p>
-                                        <button type="button" class="buttonQuantity" onClick={() => suma(id)}>+</button>
-                                    </li>
-                                    {quantity == quantityStock ? <li className="err">sin stock</li> : null}
+                            <div key={id} className="containerCart">
+                                <div className="itemImg"><ion-icon name="leaf-outline"></ion-icon></div>
+                                <div className="subContainerCart">
+                                    <div>
+                                        <li className="dataItem">{name}</li>
+                                        <li className="dataItem">${price}</li>
+                                        <li className="quantityItem">
+                                            <button type="button" className="buttonQuantity" onClick={() => resta(id)}>-</button>
+                                            <p className="quantity">{quantity}</p>
+                                            <button type="button" class="buttonQuantity" onClick={() => suma(id)}>+</button>
+                                        </li>
+                                        {quantity == quantityStock ? <li className="err">sin stock</li> : null}
+                                    </div>
+                                    <div className="subtotal">
+                                        <li className="dataItem">${price * quantity}</li>
+                                        <a className="trashIcon"><ion-icon name="trash-outline"></ion-icon></a>
+                                    </div>
                                 </div>
-                                <div className="subtotal">
-                                    <li className="dataItem">${price * quantity}</li>
-                                    <a className="trashIcon"><ion-icon name="trash-outline"></ion-icon></a>
-                                </div>
-                            </div>
-                        </div>)
-                })}</>
-            <div className="containerTotal">
-                <h className="titleTotal">Total</h>
-                <h className="titleTotal">${items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0)}</h>
+                            </div>)
+                    })}</>
             </div>
+            <div>
+                <div className="containerTotal">
+                    <h className="titleTotal">Total a pagar</h>
+                    <h className="titleTotal">${items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0)}</h>
+                </div>
+                <div className="subPrice">
+                    <div>O hasta 6 cuotas sin interes de {(items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0) / 6).toFixed(2)}</div>
+                    <button className="buttonQuantity starting">Iniciar compra</button>
+                </div>
+
+            </div>
+
         </div>
     </>
     )

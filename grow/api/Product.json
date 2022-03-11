@@ -1,0 +1,95 @@
+{
+  "productos": [
+    {
+      "name": "Picador",
+      "description": "Para picar con comidad, facil de llevar",
+      "category": "Picadores",
+      "price": 1500,
+      "stock": 15
+    },
+
+    {
+      "name": "Macetas",
+      "description": "Macetas de pvc reciclado en color verde",
+      "category": "Contenedores",
+      "price": 2500,
+      "stock": 120
+    },
+
+    {
+      "name": "Fertilizantes ",
+      "description": "Fertilixante organico a vaces de algas marinas",
+      "category": "Fertilizantes",
+      "price": 2000,
+      "stock": 158
+    },
+
+    {
+      "name": "Tijera Manicura",
+      "description": "Para mantener tus plantas en el estado optimo de produccion",
+      "category": "Tijeeras de poda",
+      "price": 2500,
+      "stock": 56
+    },
+
+    {
+      "name": "Lamparas LED",
+      "description": "No te da el sol, no importa, aca la solucion ",
+      "category": "Lamparas indoor",
+      "price": 2500,
+      "stock": 23
+    },
+
+    {
+      "name": "Bongs",
+      "description": "Bong de vidrio para mejorar tu experiencia 100% ",
+      "category": "Pipas y bongs",
+      "price": 2500,
+      "stock": 5
+    },
+
+    {
+      "name": "Carpa indoor",
+      "description": "Para mejorar tu cultivo en interior logrando el microclima perfecto para tu planta",
+      "category": "Carpas indoor",
+      "price":10000,
+      "stock": 15
+    },
+
+    {
+        "name": "Vaporizador",
+        "description": "Vaporizador Da Vinci, lograras una experincia extraordinaria y saludable a la hora de fumar",
+        "category": "Vaporizadores",
+        "price": 41000,
+        "stock": 2
+      },
+      {
+        "name": "Fungicida",
+        "description": "Controla los hongos en tus plantas mejorando la produccion, con productos organicos.",
+        "category": "Sanidad",
+        "price":750,
+        "stock": 25
+      },
+      {
+        "name": "Insecticida",
+        "description": "Controla las plagas en tus plantas no dejes que afecten la produccion",
+        "category": "Sanidad",
+        "price":789,
+        "stock": 25
+      },
+      {
+        "name": "Papelillo",
+        "description": "Fino papel de seda de conbustion lenta",
+        "category": "Seda",
+        "price":150,
+        "stock": 20
+      },
+      {
+        "name": "Papelillo de celulosa",
+        "description": "Celulosa de combustion super lenta",
+        "category": "seda",
+        "price":250,
+        "stock": 20
+      }
+  ]
+}
