@@ -9,7 +9,7 @@ import useInput from '../hooks/useInput';
 import { useNavigate } from 'react-router';
 
 export const Login = () => {
-    
+
   const navigate = useNavigate();
   const user = useSelector(state => state.user);
   const first_name = useInput('');
