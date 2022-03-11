@@ -9,6 +9,9 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { persistUser } from "../state/user";
 
+
+import SingleProduct from '../commons/SingleProduct.jsx';
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,9 +21,9 @@ function App() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/products")
-      .then((res) => res.data)
-      .then((products) => setProducts(products.items));
+      .get('/api/products')
+      .then(res => res.data)
+      .then(products => setProducts(products.items));
   }, []);
 
   return (
@@ -28,18 +31,18 @@ function App() {
       <Navbar />
       {/* <div className="container"> */}
         <Routes>
-          <Route path="/products" element={<>Productos</>} />
           <Route
             path="/"
             element={
               <>
                 <CarouselComponent/>
                 <div className="container">
-                <Grid products={products} />
+                <Grid />
                 </div>
               </>
             }
-          ></Route>
+          />
+          <Route path='/product/:id' element={<SingleProduct />} />
         </Routes>
       {/* </div> */}
       <Footer />

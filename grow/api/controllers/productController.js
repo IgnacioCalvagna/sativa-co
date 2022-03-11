@@ -1,16 +1,16 @@
-const Product = require("../models/Product");
+const Product = require('../models/Product');
 
 exports.getAll = (req, res) => {
-  Product.findAll().then((products) => res.send(products));
+  Product.findAll().then(products => res.send(products));
 };
 
 exports.getById = (req, res) => {
   const { id } = req.params;
-  Product.findOne({ where: { id } }).then((product) => res.send(product));
+  Product.findOne({ where: { id } }).then(product => res.send(product));
 };
 
 exports.add = (req, res) => {
-  const { name, description, category, price, stock } = req.body;
+  const { name, description, category, price, stock, img } = req.body;
   Product.findOrCreate({
     where: { name },
     defaults: {
@@ -19,8 +19,9 @@ exports.add = (req, res) => {
       category,
       price,
       stock,
+      img,
     },
-  }).then((product) => res.send(product));
+  }).then(product => res.send(product));
 };
 
 exports.update = (req, res) => {
@@ -31,7 +32,7 @@ exports.update = (req, res) => {
     },
     returning: true,
     plain: true,
-  }).then((result) => {
+  }).then(result => {
     const user = result[1];
     res.status(201).json({
       user,
@@ -41,7 +42,7 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const { id } = req.params;
-  Product.destroy({ where: { id } }).then((data) => res.sendStatus(202));
+  Product.destroy({ where: { id } }).then(data => res.sendStatus(202));
 };
 
 //// Productos I (categoria)
@@ -49,14 +50,12 @@ exports.delete = (req, res) => {
 exports.getByCategory = (req, res) => {
   const { category } = req.params;
   console.log(category);
-  Product.findAll({ where: { category } }).then((products) =>
-    res.send(products)
-  );
+  Product.findAll({ where: { category } }).then(products => res.send(products));
 };
 
 exports.getByName = (req, res) => {
   const { name } = req.params;
-  Product.findAll({ where: { name } }).then((products) => {
+  Product.findAll({ where: { name } }).then(products => {
     res.send(products);
   });
 };
