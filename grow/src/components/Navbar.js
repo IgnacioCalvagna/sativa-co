@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import { Sidebar } from './Sidebar';
 import { Login } from './Login';
@@ -35,16 +36,18 @@ const Navbar = () => {
                     data-bs-toggle='dropdown'
                     aria-expanded='false'
                   >
+                    
                     GROWSHOP
                   </a>
                   <ul
                     className='dropdown-menu'
                     aria-labelledby='navbarDropdown'
                   >
-                    <li>
+                    <li><Link to={`/products`}>
                       <a className='dropdown-item' href='#'>
-                        catalogo 1
+                        Productos Populares
                       </a>
+                    </Link>
                     </li>
                     <li>
                       <a className='dropdown-item' href='#'>
