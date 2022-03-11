@@ -2,12 +2,14 @@
     color: grey;
     text-align: center;
     font-size: 0.9em;
+
 }
 
-.image-grid-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;}
+.image-grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .card-img{
     border-radius: 10px;
@@ -44,4 +46,8 @@
     /* border: 1px solid rgba(0,0,0,.125); */
     /* border-radius: 0.25rem; */
     border: none;
+}
+
+.container-grid > a {
+  text-decoration: none;
 }
