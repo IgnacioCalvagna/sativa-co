@@ -12,9 +12,7 @@ const Grid = (props) => {
         <div class="row">
           {products.map((data, i) => (
             <div className="col-md-4 mt-2" key={i}>
-              <Link to={`/products`}>
                 <Card data={data} />
-              </Link>
             </div>
           ))}
         </div>

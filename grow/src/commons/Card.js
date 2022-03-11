@@ -1,24 +1,40 @@
-import "../style/Grid.css"
+import "../style/Grid.css";
+import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
-    return (
-      <div className="card" width="150" height="250">
-        <div className="card-body">
-              <h5 className="card-title" >{data.name}</h5>
-            <img class="card-img"  
-            src={data.images[0] ? data.images[0].url : 
-                "https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png"} alt="Card image cap"
-            />
-        </div>
-        <div className="card-content">
-          <div className="media">
-            <div className="media-left">
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title" >{data.name}</h5>
+        <div className="image-grid-container">
+        <Link to={`/producto/${data.id}`}>
+          <img
+            class="card-img"
+            src={
+              data.images[0]
+                ? data.images[0].url
+                : "https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png"
+            }
+            alt="Card image cap"
+          />{" "}
+        </Link></div>
+        <div className="container-grid">
+          <Link to={`/producto/${data.id}`}>
+            <div>
+              <button type="button" className="button-grid">
+                <i class=""></i> Add to cart
+              </button>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
-    );
-  };
-  
-  export default Card;
+      <div className="card-content">
+        <div className="media">
+          <div className="media-left"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
+export default Card;
