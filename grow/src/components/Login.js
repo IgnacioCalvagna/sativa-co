@@ -9,7 +9,6 @@ import useInput from '../hooks/useInput';
 import { useNavigate } from 'react-router';
 
 export const Login = () => {
-
   const navigate = useNavigate();
   const user = useSelector(state => state.user);
   const first_name = useInput('');
@@ -19,15 +18,41 @@ export const Login = () => {
 
   const dispatch = useDispatch();
 
+  const validateEmail = email => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      return true;
+    }
+    alert('You have entered an invalid email address!');
+    return false;
+  };
+
+  const validateString = str => {
+    if (/^[a-z ,.'-]+$/i.test(str)) {
+      return true;
+    }
+    alert('Your name or lastname is not valid!');
+    return false;
+  };
+
   const handleLogin = e => {
     e.preventDefault();
-    console.log('yo soy el mail y el password', email.value, password.value);
+
+    if (!validateEmail(email.value)) return;
     dispatch(
-      sendLoginRequest({ email: email.value, password: password.value })
-    );
+      sendLoginRequest({
+        email: email.value,
+        password: password.value,
+      })
+    ).then(() => {
+      window.location.reload(false);
+    });
   };
   const handleRegister = e => {
     e.preventDefault();
+
+    if (!validateString(first_name.value)) return;
+    if (!validateString(last_name.value)) return;
+    if (!validateEmail(email.value)) return;
 
     dispatch(
       sendSignUpRequest({
@@ -35,12 +60,19 @@ export const Login = () => {
         lastname: last_name.value,
         email: email.value,
         password: password.value,
-      }).then(navigate('/'))
-    );
+      })
+    )
+      .then(user =>
+        dispatch(
+          sendLoginRequest({ email: user.email, password: user.password })
+        )
+      )
+      .then(() => {
+        window.location.reload(false);
+      });
   };
 
   const handleLogout = () => {
-    console.log('aprete logout');
     dispatch(sendLogoutRequest());
   };
 
@@ -74,8 +106,11 @@ export const Login = () => {
                   </label>
                   <input
                     type='text'
+                    minlength='2'
+                    maxlength='30'
                     className='form-control'
                     id='recipient-name'
+                    required
                     {...first_name}
                   />
                 </div>
@@ -87,16 +122,24 @@ export const Login = () => {
                     type='text'
                     className='form-control'
                     id='recipient-name'
+                    minlength='2'
+                    maxlength='30'
+                    required
                     {...last_name}
                   />
                 </div>
                 <div className='mb-3'>
-                  <label htmlFor='recipient-name' className='col-form-label'>
+                  <label
+                    htmlFor='recipient-name'
+                    className='col-form-label'
+                    data-error='wrong'
+                    data-success='right'
+                  >
                     Email
                   </label>
                   <input
                     type='email'
-                    className='form-control'
+                    className='form-control validate'
                     id='recipient-name'
                     {...email}
                   />
