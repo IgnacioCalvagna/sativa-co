@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Sidebar } from './Sidebar';
 import { Login } from './Login';
@@ -6,12 +7,12 @@ import '../style/Navbar.css';
 
 const Navbar = () => {
   return (
-    <div className='shadow'>
+    <div className='shadow' style={{ backgroundColor: '#f8f9fa' }}>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container-fluid'>
-          <a className='navbar-brand' href='#'>
+          <Link to='/' className='navbar-brand'>
             Sativa
-          </a>
+          </Link>
           <button
             className='navbar-toggler'
             type='button'
@@ -42,9 +43,11 @@ const Navbar = () => {
                     aria-labelledby='navbarDropdown'
                   >
                     <li>
-                      <a className='dropdown-item' href='#'>
-                        catalogo 1
-                      </a>
+                      <Link to={`/products`}>
+                        <a className='dropdown-item' href='#'>
+                          Productos Populares
+                        </a>
+                      </Link>
                     </li>
                     <li>
                       <a className='dropdown-item' href='#'>
