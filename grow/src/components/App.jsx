@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import axios from 'axios';
-import Grid from './Grid'
+import Grid from './Grid';
 
 import Navbar from './Navbar';
 import { persistUser } from '../state/user';
+
+import SingleProduct from '../commons/SingleProduct.jsx';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,9 +19,9 @@ function App() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/products")
-      .then((res) => res.data)
-      .then((products) => setProducts(products.items));
+      .get('/api/products')
+      .then(res => res.data)
+      .then(products => setProducts(products.items));
   }, []);
 
   return (
@@ -27,13 +29,8 @@ function App() {
       <Navbar />
       <div className='container'>
         <Routes>
-      <Route
-            path="/products"
-            element={
-              <Grid products={products}/>
-            }
-          />
-          <Route path='/' element={<> hola como andas</>}></Route>
+          <Route path='/' element={<Grid />}></Route>
+          <Route path='/product/:id' element={<SingleProduct />} />
         </Routes>
       </div>
     </div>
@@ -41,6 +38,3 @@ function App() {
 }
 
 export default App;
-
-
-
