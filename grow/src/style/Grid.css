@@ -32,3 +32,7 @@
     align-items: center;
     margin-top: 10px;
   }
+
+.container-grid>a{
+    text-decoration: none;
+}

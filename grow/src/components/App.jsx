@@ -6,6 +6,7 @@ import axios from 'axios';
 import Grid from './Grid'
 
 import Navbar from './Navbar';
+import SingleProduct from '../commons/SingleProduct.jsx';
 import { persistUser } from '../state/user';
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
             }
           />
           <Route path='/' element={<> hola como andas</>}></Route>
+
+          <Route path='/products/:id' element={<SingleProduct/>}></Route>
         </Routes>
       </div>
     </div>
