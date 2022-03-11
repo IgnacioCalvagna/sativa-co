@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import axios from "axios";
 import Grid from "./Grid";
-import Carousel from "./Carousel";
+import CarouselComponent from "./Carousel";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { persistUser } from "../state/user";
@@ -26,20 +26,22 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="container">
+      {/* <div className="container"> */}
         <Routes>
           <Route path="/products" element={<>Productos</>} />
           <Route
             path="/"
             element={
               <>
-                <Carousel/>
+                <CarouselComponent/>
+                <div className="container">
                 <Grid products={products} />
+                </div>
               </>
             }
           ></Route>
         </Routes>
-      </div>
+      {/* </div> */}
       <Footer />
     </div>
   );
