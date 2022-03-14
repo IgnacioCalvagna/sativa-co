@@ -10,22 +10,13 @@ const SingleProduct = () => {
   const [mainSrc, setMainSrc] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`/api/product/${id}`)
-      .then(res => {
-        console.log(`res es`, res)
-        setProduct(res.data)
-      })
-      // .then(() => {
-      //   setMainSrc(product.img[0]);
-      // });
-  }, []);
-
-  console.log(`Product es`, product);
+    axios.get(`/api/product/${id}`).then((res) => {
+      setProduct(res.data);
+    });
+  }, [id]);
 
   const handleImageClick = (event) => {
     setMainSrc(event.target.src);
-    // console.log(document.getElementsByClassName('thumbnails-div'));
   };
 
   const prevImg = () => {
@@ -35,41 +26,48 @@ const SingleProduct = () => {
   };
 
   const nextImg = () => {
-    // console.log(`index es`, arrImg.indexOf(mainSrc));
-    // console.log(`length es`, arrImg.length);
     if (product.img.indexOf(mainSrc) < product.img.length - 1) {
       setMainSrc(product.img[product.img.indexOf(mainSrc) + 1]);
     }
   };
 
   return (
-    <div className="container singleProduct">
+    <div className="container singleProductDiv">
       <div className="row" style={{ justifyContent: "center" }}>
         <div className="row d-flex col-lg-5 product-images ">
           <div className="row thumbnails-div col-4">
-            {console.log(`product.img es`, product.img)}
-            {product.img? product.img.map((ruta, index) => {
-              return (
-                <img
-                  className="product-thumbnail"
-                  src={ruta}
-                  onClick={handleImageClick}
-                ></img>
-              );
-            }) : null
-          }
+            {product.img
+              ? product.img.map((ruta, index) => {
+                  return (
+                    <img
+                      className="product-thumbnail"
+                      src={ruta}
+                      onClick={handleImageClick}
+                      alt="product"
+                      key={index}
+                    ></img>
+                  );
+                })
+              : null}
           </div>
           <div className="main-image col-8">
             <img
               id="featured"
               className="img-fluid product-img"
+              alt="main product"
               style={{
                 alignSelf: "center",
                 width: "auto",
                 maxHeight: "400px",
                 margin: "auto",
               }}
-              src={product.img? (mainSrc? mainSrc : product.img[0]) : ''}
+              src={
+                product.img
+                  ? mainSrc
+                    ? mainSrc
+                    : product.img[0]
+                  : "https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png"
+              }
             />
             <div
               style={{
@@ -77,12 +75,13 @@ const SingleProduct = () => {
                 justifyContent: "center",
                 marginTop: "20px",
               }}
+              className="arrowDiv"
             >
               <div onClick={prevImg} className="arrow">
-                {"<"}
+                <ion-icon name="chevron-back-circle-outline"></ion-icon>
               </div>
               <div onClick={nextImg} className="arrow">
-                {">"}
+                <ion-icon name="chevron-forward-circle-outline"></ion-icon>
               </div>
             </div>
           </div>
@@ -91,8 +90,10 @@ const SingleProduct = () => {
         <div className="col-lg-7">
           <h1 className="text-start product-name">{product.name}</h1>
           <div className="rating-div text-start">
-            {" "}
-            {"rating 4"} {"star-icon"} {"2 Reviews"}
+            <span className="rating-span">
+              <span className="ratingNumber-span">{"4"}</span> <ion-icon name="star-outline"></ion-icon>
+            </span>{" "}
+            <span>{2} Reviews</span>
           </div>
           <div className="product-price text-start d-flex">
             <span className="price">$ {product.price}</span>
