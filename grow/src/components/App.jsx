@@ -19,12 +19,12 @@ function App() {
   }, []);
 
   const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get('/api/products')
-      .then(res => res.data)
-      .then(products => setProducts(products.items));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('/api/products')
+  //     .then(res => res.data)
+  //     .then(products => setProducts(products.items));
+  // }, []);
 
   return (
     <div className="App">
