@@ -1,0 +1,13 @@
+.labelAndInput {
+    margin: 20px 0;
+}
+
+.priceInput {
+    margin-left: 10px;
+    width: 120px;
+}
+
+.productInput {
+    height: 40px;
+    padding: 15px;
+} 

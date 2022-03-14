@@ -8,6 +8,7 @@ const SingleProduct = () => {
 
   const [product, setProduct] = useState({});
   const [mainSrc, setMainSrc] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     axios.get(`/api/product/${id}`).then((res) => {
@@ -77,12 +78,12 @@ const SingleProduct = () => {
               }}
               className="arrowDiv"
             >
-              <div onClick={prevImg} className="arrow">
+              <button onClick={prevImg} className="arrow">
                 <ion-icon name="chevron-back-circle-outline"></ion-icon>
-              </div>
-              <div onClick={nextImg} className="arrow">
+              </button>
+              <button onClick={nextImg} className="arrow">
                 <ion-icon name="chevron-forward-circle-outline"></ion-icon>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -91,7 +92,8 @@ const SingleProduct = () => {
           <h1 className="text-start product-name">{product.name}</h1>
           <div className="rating-div text-start">
             <span className="rating-span">
-              <span className="ratingNumber-span">{"4"}</span> <ion-icon name="star-outline"></ion-icon>
+              <span className="ratingNumber-span">{"4"}</span>{" "}
+              <ion-icon name="star-outline"></ion-icon>
             </span>{" "}
             <span>{2} Reviews</span>
           </div>
@@ -108,14 +110,28 @@ const SingleProduct = () => {
             <label htmlFor="quantity">Cantidad: </label>
             <div className="d-flex buyDiv">
               <div className="d-flex">
-                <button className="btn btn-light">+</button>
+                <button
+                  className="btn btn-light"
+                  onClick={() => {
+                    if (quantity > 0) setQuantity(quantity - 1);
+                  }}
+                >
+                  -
+                </button>
                 <input
                   id="quantity"
                   style={{ maxWidth: "80px", textAlign: "center" }}
                   className="form-control"
                   placeholder="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
                 ></input>
-                <button className="btn btn-light">-</button>
+                <button
+                  className="btn btn-light"
+                  onClick={() => setQuantity(parseInt(quantity) + 1)}
+                >
+                  +
+                </button>
               </div>
               <button className="btn btn-primary">Agregar a carrito</button>
             </div>

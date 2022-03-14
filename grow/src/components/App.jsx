@@ -11,6 +11,9 @@ import { persistUser } from "../state/user";
 
 
 import SingleProduct from '../commons/SingleProduct.jsx';
+import AdminUsers from "./AdminUsers";
+import AdminOrders from "./AdminOrders";
+import AdminProducts from "./AdminProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +46,10 @@ function App() {
             }
           />
           <Route path='/product/:id' element={<SingleProduct />} />
+          <Route path='/admin/users' element={<AdminUsers />} />
+          <Route path='/admin/orders' element={<AdminOrders />} />
+          <Route path='/admin/products' element={<AdminProducts />} />
+
         </Routes>
       {/* </div> */}
       <Footer />
