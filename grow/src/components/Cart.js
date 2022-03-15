@@ -4,44 +4,49 @@ import "../style/Sidebar.css"
 const Cart = () => {
     const [items, setItems] = useState([])
     useEffect(() => {
-        setItems([
-            {
-                id: 1,
-                name: "planta",
-                price: 3050,
-                img: "imgproduct-png",
-                description: "esta es la descripcion del producto",
-                quantityStock: 5,
-                quantity: 1
-            },
-            {
-                id: 2,
-                name: "maseta",
-                price: 1000,
-                img: "imgproduct-png",
-                description: "esta es la descripcion del producto",
-                quantityStock: 3,
-                quantity: 1
-            },
-            {
-                id: 3,
-                name: "tierra",
-                price: 3500,
-                img: "imgproduct-png",
-                description: "esta es la descripcion del producto",
-                quantityStock: 4,
-                quantity: 1
-            },
-            {
-                id: 4,
-                name: "tijera",
-                price: 2000,
-                img: "imgproduct-png",
-                description: "esta es la descripcion del producto",
-                quantityStock: 3,
-                quantity: 1
-            }
-        ])
+        setItems(
+            [
+                {
+                    "id": 1,
+                    "quantity": 7,
+                    "createdAt": "2022-03-15T02:51:47.953Z",
+                    "updatedAt": "2022-03-15T03:54:43.267Z",
+                    "ShoppingCartId": 1,
+                    "productId": 1,
+                    "product": {
+                        "id": 1,
+                        "name": "Picador",
+                        "description": "Para picar con comidad, facil de llevar",
+                        "category": "Picadores",
+                        "price": "1500",
+                        "stock": 15,
+                        "img": null,
+                        "createdAt": "2022-03-15T02:51:11.865Z",
+                        "updatedAt": "2022-03-15T02:51:11.865Z"
+                    }
+                },
+                {
+                    "id": 2,
+                    "quantity": 3,
+                    "createdAt": "2022-03-15T03:57:10.397Z",
+                    "updatedAt": "2022-03-15T03:57:10.428Z",
+                    "ShoppingCartId": 1,
+                    "productId": 2,
+                    "product": {
+                        "id": 2,
+                        "name": "Macetas",
+                        "description": "Macetas de pvc reciclado en color verde",
+                        "category": "Contenedores",
+                        "price": "2500",
+                        "stock": 120,
+                        "img": null,
+                        "createdAt": "2022-03-15T02:51:11.865Z",
+                        "updatedAt": "2022-03-15T02:51:11.865Z"
+                    }
+                }
+            ]
+             
+        )
     }, [])
 
     const suma = (id) => {
@@ -62,7 +67,6 @@ const Cart = () => {
         })
         setItems(itemsAux)
     }
-    console.log("---->", items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0))
 
     return (<>
         <div className="containerSidebar">
@@ -72,24 +76,24 @@ const Cart = () => {
                     <h>subtotal</h>
                 </div>
                 <>{
-                    items.map(({ name, id, price, quantity, quantityStock }, i) => {
+                    items.map(({ id, quantity, product }, i) => {
                         return (
 
                             <div key={id} className="containerCart">
                                 <div className="itemImg"><ion-icon name="leaf-outline"></ion-icon></div>
                                 <div className="subContainerCart">
                                     <div>
-                                        <li className="dataItem">{name}</li>
-                                        <li className="dataItem">${price}</li>
+                                        <li className="dataItem">{product.name}</li>
+                                        <li className="dataItem">${product.price}</li>
                                         <li className="quantityItem">
                                             <button type="button" className="buttonQuantity" onClick={() => resta(id)}>-</button>
                                             <p className="quantity">{quantity}</p>
                                             <button type="button" class="buttonQuantity" onClick={() => suma(id)}>+</button>
                                         </li>
-                                        {quantity == quantityStock ? <li className="err">sin stock</li> : null}
+                                        {quantity == product.stock ? <li className="err">sin stock</li> : null}
                                     </div>
                                     <div className="subtotal">
-                                        <li className="dataItem">${price * quantity}</li>
+                                        <li className="dataItem">${product.price * quantity}</li>
                                         <a className="trashIcon"><ion-icon name="trash-outline"></ion-icon></a>
                                     </div>
                                 </div>
@@ -99,10 +103,10 @@ const Cart = () => {
             <div>
                 <div className="containerTotal">
                     <h className="titleTotal">Total a pagar</h>
-                    <h className="titleTotal">${items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0)}</h>
+                    <h className="titleTotal">${items.map(({ quantity, product }) => quantity * product.price).reduce((total, i) => total + i, 0)}</h>
                 </div>
                 <div className="subPrice">
-                    <div>O hasta 6 cuotas sin interes de {(items.map(({ quantity, price }) => quantity * price).reduce((total, i) => total + i, 0) / 6).toFixed(2)}</div>
+                    <div>O hasta 6 cuotas sin interes de {(items.map(({ quantity, product }) => quantity * product.price).reduce((total, i) => total + i, 0) / 6).toFixed(2)}</div>
                     <button className="buttonQuantity starting">Iniciar compra</button>
                 </div>
 

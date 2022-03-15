@@ -18,7 +18,7 @@ const Grid = props => {
     <div classname='container d-flex justify-content-center mt-50 mb-50'>
       <div className='row'>
         <div class='row'>
-          {products.map((data, i) => (
+          {products?.map((data, i) => (
             <div className='col-md-4 mt-2' key={i}>
               <Card data={data} />
             </div>

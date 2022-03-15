@@ -1,7 +1,9 @@
-import './SingleProduct.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
+import Comments from '../components/Comments'
+
+import './SingleProduct.css';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -10,7 +12,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     axios.get(`/api/product/${id}`).then(res => setProduct(res.data));
-  }, product);
+  },[]);
 
   console.log(product);
 
@@ -144,6 +146,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
+      < Comments/>
     </div>
   );
 };
