@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import axios from "axios";
+import OrderHistorial from "./OrderHistorial";
 import Grid from "./Grid";
 import CarouselComponent from "./Carousel";
 import Navbar from "./Navbar";
@@ -10,6 +11,7 @@ import Footer from "./Footer";
 import { persistUser } from "../state/user";
 
 
+import OrderItem from '../commons/OrderItem.jsx';
 import SingleProduct from '../commons/SingleProduct.jsx';
 
 function App() {
@@ -42,6 +44,8 @@ function App() {
               </>
             }
           />
+          <Route path='/orders' element={<OrderHistorial />} />
+          <Route path='/orders/:id' element={<OrderItem />} />
           <Route path='/product/:id' element={<SingleProduct />} />
         </Routes>
       {/* </div> */}

@@ -16,14 +16,14 @@ const Card = ({ data }) => {
                   : 'https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png'
               }
               alt='Card image cap'
-            />{' '}
+            />
           </Link>
         </div>
         <div className='container-grid'>
           <Link to={`/product/${data.id}`}>
             <div>
-              <button type='button' className='button-grid'>
-                <i class=''></i> Ver Detalle
+              <button type='button' className='buttonItem'>
+                Ver Detalles
               </button>
             </div>
           </Link>
