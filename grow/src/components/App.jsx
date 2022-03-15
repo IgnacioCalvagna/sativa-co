@@ -14,6 +14,9 @@ import SingleProduct from '../commons/SingleProduct.jsx';
 import AdminUsers from "./AdminUsers";
 import AdminOrders from "./AdminOrders";
 import AdminProducts from "./AdminProducts";
+import NewProductForm from "./NewProductForm"
+import EditProductForm from "./EditProductForm";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +52,8 @@ function App() {
           <Route path='/admin/users' element={<AdminUsers />} />
           <Route path='/admin/orders' element={<AdminOrders />} />
           <Route path='/admin/products' element={<AdminProducts />} />
+          <Route path='/admin/products/new-product' element={<NewProductForm/>} />
+          <Route path='/admin/products/edit/:id' element={<EditProductForm/>} />
 
         </Routes>
       {/* </div> */}

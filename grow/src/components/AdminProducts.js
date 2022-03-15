@@ -1,73 +1,118 @@
 import "../style/AdminProducts.css";
+import useInput from "../hooks/useInput";
+import { Table, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const AdminProducts = () => {
-  return (
-    <div className="container singleProductDiv">
-      <h1 className="text-center product-name ">CREAR PRODUCTO</h1>
-      <div className="row" style={{ justifyContent: "center" }}>
-        <div className="col-lg-7">
-          <div className="d-flex flex-column labelAndInput">
-            <label htmlFor="name">Nombre:</label>
-            <input
-              type="text"
-              placeholder="Nombre del producto"
-              name="name"
-              className="productInput"
-            />
-          </div>
-          <div className="d-flex flex-column labelAndInput">
-            <label htmlFor="price">Precio:</label>
-            <span>
-              (ARS) $
-              <input
-                type="number"
-                placeholder='0'
-                min={0}
-                name="price"
-                className="productInput priceInput"
-              />
-            </span>
-          </div>
-          <div className="d-flex flex-column labelAndInput">
-            <label htmlFor="category">Categoría:</label>
-            <input
-              type="text"
-              placeholder="Categoría 1; Categoría 2; ... "
-              name="category"
-              className="productInput"
-            />
-          </div>
-          <div className="d-flex flex-column labelAndInput">
-            <label htmlFor="stock">Stock:</label>
-            <input
-              type="number"
-              placeholder="Stock del producto"
-              min={0}
-              name="stock"
-              className="productInput"
-            />
-          </div>
-          <div className="d-flex flex-column labelAndInput">
-            <label htmlFor="images">Imagenes:</label>
-            <input
-              type="text"
-              placeholder="path1; path2; ..."
-              name="images"
-              className="productInput"
-            />
-          </div>
-          <div className="d-flex flex-column labelAndInput">
-            <label htmlFor="description">Descripción:</label>
-            <textarea type="text" placeholder="Description" />
-          </div>
+  const searchValue = useInput("");
+  const [results, SetResults] = useState([]);
 
-          <div>
-            <div className="d-flex flex-row-reverse">
-              <button className="btn btn-primary ">Agregar producto</button>
-            </div>
-          </div>
-        </div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchValue.value !== "") {
+      axios
+        .get(`/api/product/name/${searchValue.value}`)
+        .then((res) => SetResults(res.data));
+    }
+  };
+
+  //prueba de modal
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  //
+
+  const handleEdit = (e) => {
+    const productId = e.target.id;
+  };
+
+  return (
+    <div className="container usersTitleDiv">
+      <h1>Products</h1>
+      <div className="searchFormDiv">
+        <form onSubmit={handleSubmit}>
+          {/* <label htmlFor="searchUsersInput">Buscador de usuarios </label> */}
+          <input
+            type="text"
+            name="products"
+            id="searchProductsInput"
+            className="searchFormInput"
+            placeholder="Busca un producto"
+            {...searchValue}
+          />
+          <button className="btn btn-primary searchFormBtn" type="submit">
+            Buscar
+          </button>
+        </form>
+        <Link to={"/admin/products/new-product"}>
+          <button className="btn btn-success" style={{ marginTop: "20px" }}>
+            Crear producto
+          </button>
+        </Link>
       </div>
+      <Table bordered hover>
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {results.map((result) => {
+            return (
+              <tr key={result.id}>
+                <td>{result.category}</td>
+                <td>{result.name}</td>
+                <td>{result.description}</td>
+                <td>
+                  <div style={{ alignSelf: "flex-end" }}>
+                    <button className="btn btn-danger" onClick={handleShow}>
+                      Eliminar
+                    </button>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Confirmar eliminar producto?</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Footer>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={handleClose}
+                        >
+                          Close
+                        </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={handleClose}
+                        >
+                          Eliminar
+                        </button>
+                      </Modal.Footer>
+                    </Modal>
+
+                    <Link to={`/admin/products/edit/${result.id}`}>
+                      <button
+                        className="btn btn-primary"
+                        id={result.id}
+                        onClick={handleEdit}
+                      >
+                        Editar
+                      </button>
+                    </Link>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </div>
   );
 };

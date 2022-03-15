@@ -146,6 +146,11 @@ const Navbar = () => {
                         Productos
                       </Link>
                     </li>
+                    <li>
+                      <Link to={`/admin/categories`} className="dropdown-item">
+                        Caterogías
+                      </Link>
+                    </li>
                   </ul>
                 </li>
               </div>
