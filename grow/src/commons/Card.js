@@ -23,7 +23,7 @@ const Card = ({ data }) => {
           <Link to={`/product/${data.id}`}>
             <div>
               <button type='button' className='buttonItem'>
-                 Add to cart
+                Ver Detalles
               </button>
             </div>
           </Link>

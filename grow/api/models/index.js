@@ -10,15 +10,15 @@ const User = require('./User');
 const Role = require('./Role');
 
 ShoppingCart.belongsTo(User);
-//User.hasOne(ShoppingCart);
+User.hasOne(ShoppingCart);
 
 CartItem.belongsTo(ShoppingCart);
 ShoppingCart.hasMany(CartItem);
 
-//Product.hasMany(CartItem);
 CartItem.belongsTo(Product);
+Product.hasMany(CartItem);
 
-User.hasOne(Role);
+User.belongsTo(Role);
 
 Address.belongsTo(User);
 User.hasMany(Address);
