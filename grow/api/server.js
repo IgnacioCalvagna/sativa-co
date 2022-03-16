@@ -9,7 +9,7 @@ const db = require('./db');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const morgan = require('morgan');
-
+const nodemailer = require('nodemailer');
 const cookieParser = require('cookie-parser');
 const sessions = require('express-session');
 const passport = require('passport');
@@ -72,6 +72,7 @@ passport.deserializeUser(function (id, done) {
     })
     .catch(done);
 });
+
 
 app.use(function (err, req, res, next) {
   console.error(err);

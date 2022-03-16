@@ -10,4 +10,6 @@ const setupSeed = () => {
   Product.bulkCreate(fake).then(product => console.log(product));
 };
 
+
 db.sync().then(setupSeed);
+

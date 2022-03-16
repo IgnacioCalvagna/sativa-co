@@ -1,8 +1,8 @@
+
 .card-title{
     color: grey;
     text-align: center;
     font-size: 0.9em;
-
 }
 
 .image-grid-container {
@@ -10,7 +10,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .card-img{
     border-radius: 10px;
     width: 220px;
@@ -20,6 +19,7 @@
 .card:hover .card-img {
     -webkit-transform:scale(2);
     transform:scale(1.09);
+    transition: transform 0.8s;
 }
 
 .buttonItem{
@@ -46,6 +46,8 @@
     /* border: 1px solid rgba(0,0,0,.125); */
     /* border-radius: 0.25rem; */
     border: none;
+    transition: transform 0.8s;
+
 }
 
 .container-grid > a {

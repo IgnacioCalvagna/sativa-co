@@ -19,6 +19,7 @@ exports.add = (req, res) => {
       category,
       price,
       stock,
+
       img,
     },
   }).then(product => res.send(product));
@@ -42,7 +43,9 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const { id } = req.params;
+
   Product.destroy({ where: { id } }).then(data => res.sendStatus(202));
+
 };
 
 //// Productos I (categoria)
@@ -50,6 +53,7 @@ exports.delete = (req, res) => {
 exports.getByCategory = (req, res) => {
   const { category } = req.params;
   console.log(category);
+
   Product.findAll({ where: { category } }).then(products => res.send(products));
 };
 
