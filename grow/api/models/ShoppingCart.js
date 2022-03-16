@@ -6,7 +6,7 @@ class ShoppingCart extends Model {}
 ShoppingCart.init(
   {
     total: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

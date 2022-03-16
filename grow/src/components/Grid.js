@@ -10,14 +10,12 @@ const Grid = props => {
 
   useEffect(() => {
     axios.get('/api/product/').then(res => setProducts(res.data));
-  }, products);
-
-  console.log('soy products', products);
+  }, []);
 
   return (
-    <div classname='container d-flex justify-content-center mt-50 mb-50'>
+    <div className='container d-flex justify-content-center mt-50 mb-50'>
       <div className='row'>
-        <div class='row'>
+        <div className='row'>
           {products.map((data, i) => (
             <div className='col-md-4 mt-2' key={i}>
               <Card data={data} />

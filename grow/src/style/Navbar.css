@@ -7,8 +7,6 @@
 }
 
 .dropdown1{
-    margin-left: 440px;
-    margin-right: 340px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -27,4 +25,14 @@
 .title{
     margin-left: 10px;
     font-size: 1.7em;
+}
+.navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: -webkit-fill-available;
+}
+.me-auto {
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: space-around;
 }

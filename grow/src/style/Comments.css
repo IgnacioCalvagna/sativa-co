@@ -1,0 +1,49 @@
+.titleComment{
+    font-size: 1.8em;
+    margin-top: 50px;
+}
+.formComments{
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    margin-inline: 2%;
+}
+.inputComment{
+    width: -webkit-fill-available;
+    white-space: normal;
+    margin-top: 15px;
+   border: 2px solid #378e66d6;
+    border-radius: 9px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.buttonComment{
+ margin-left: 2%;
+    padding: 5px;
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:5px;
+    border: 2px solid #378e66d6;
+}
+
+.buttonComment:hover{
+    background-color:#378e66d6
+}
+.buttonComment:active{
+     border: 2px solid white;
+}
+.comment{
+    width: -webkit-fill-available;
+    margin-top: 5px;
+    border-radius: 9px;
+    padding: 5px;
+    background:#c3f0cd ;
+}
+.userComment{
+    font-weight: bold;
+    color: #378e66d6;
+}

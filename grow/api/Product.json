@@ -5,7 +5,9 @@
       "description": "Para picar con comidad, facil de llevar",
       "category": "Picadores",
       "price": 1500,
-      "stock": 15
+
+      "stock": 15,
+      "img": ["https://i.pinimg.com/736x/f4/95/52/f49552c63e353a6c2b73eada2f8f4671.jpg", "https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"]
     },
 
     {
