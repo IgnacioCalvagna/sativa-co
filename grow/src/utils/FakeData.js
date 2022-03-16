@@ -163,6 +163,8 @@ const FakeData = [
         url: "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/220/151/products/mad-rocket-10-lts-maceta-inteligente-x-4-unidades-d_nq_np_714722-mla32728464099_112019-f1-2e0adf9582f7cb878115989092464678-1024-1024.jpg",
       },
     ],
+    quantityStock: 5,
+    quantity: 1,
     created_at: "02.01.2015 19:47",
     modified_at: "02.02.2015 19:47",
   },

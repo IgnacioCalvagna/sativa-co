@@ -1,0 +1,20 @@
+.usersTitleDiv {
+    padding-top: 60px;
+    text-align: center;
+    flex: 1;
+}
+
+.searchFormDiv {
+    padding: 40px;
+}
+
+.searchFormInput {
+    height: 50px;
+    width: 70%;
+    min-width: 180px;
+}
+
+.searchFormBtn {
+    height: 50px;
+    /* background-color: rgb(36, 119, 80); */
+}

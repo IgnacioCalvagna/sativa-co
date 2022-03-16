@@ -1,42 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const { User } = require('../models');
+const userController = require('../controllers/userController');
 
-router.post('/register', (req, res) => {
-  console.log(req.body);
-  User.create(req.body).then(user => {
-    res.status(201).send(user);
-  });
-});
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log('fede');
-  res.send(req.user);
-});
-router.post('/logout', (req, res) => {
-  req.logOut();
-  res.sendStatus(200);
-});
+router.get('/',userController.getAll)
+router.post('/login', passport.authenticate('local'), userController.login);
+router.post('/register',userController.register );
+router.post('/logout', userController.logout);
+router.put('/:id', userController.update);
+router.get('/me', userController.me);
 
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  User.update(req.body, {
-    where: {
-      id,
-    },
-    returning: true,
-    plain: true,
-  }).then(result => {
-    const user = result[1];
-    res.status(201).json({
-      user,
-    });
-  });
-});
+//Admin
+router.put('/adminCreate/:id', userController.adminCreate);
+router.delete('/suprAdmin/:id', userController.suprAdmin);
+router.get('/allAdmin', userController.allAdmin);
+router.post('/createRole', userController.createRole);
 
-router.get('/me', (req, res) => {
-  if (!req.user) return res.sendStatus(401);
-  res.send(req.user);
-});
 
 module.exports = router;

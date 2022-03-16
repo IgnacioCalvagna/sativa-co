@@ -1,0 +1,16 @@
+.footer {
+  background-color: #f8f9fa;
+
+  margin-bottom: auto !important;
+  margin-right: 0px !important;
+  justify-self: end;
+}
+
+.logo-text {
+  font-size: 1.25em;
+  padding-left: 30px;
+}
+
+.copyright {
+  padding-left: 30px;
+}
