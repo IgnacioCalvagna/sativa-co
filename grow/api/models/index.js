@@ -18,7 +18,7 @@ ShoppingCart.hasMany(CartItem);
 //Product.hasMany(CartItem);
 CartItem.belongsTo(Product);
 
-User.hasOne(Role);
+User.belongsTo(Role);
 
 Address.belongsTo(User);
 User.hasMany(Address);
