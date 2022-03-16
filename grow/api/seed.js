@@ -1,16 +1,13 @@
 const fakeData = require('./Product.json');
 const db = require('./db');
-const {Product} = require('./models');
+const { Product } = require('./models');
 
-const setupSeed = async () => {
+const setupSeed = () => {
+  const fake = [];
+  for (let i = 0; i < fakeData.productos.length; i++) {
+    fake.push(fakeData.productos[i]);
+  }
+  Product.bulkCreate(fake).then(product => console.log(product));
+};
 
-    const fake = [];
-    for(let i = 0; i < fakeData.length; i++) {
-        fake.push(fakeData[i]);
-           
-    }
-}
-const product = await Product.bulkCreate(fake)
-
-db.sync()
-.then(setupSeed)
+db.sync().then(setupSeed);

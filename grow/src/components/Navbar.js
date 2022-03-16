@@ -10,7 +10,11 @@ const Navbar = () => {
     <div className='shadow' style={{ backgroundColor: '#f8f9fa' }}>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container-fluid'>
+<<<<<<< HEAD
           <Link to='/' className='navbar-brand'>
+=======
+          <Link to='/' className='navbar-brand title'>
+>>>>>>> eeca428dcf04f654e3e07699e31ace153159ddf7
             Sativa
           </Link>
           <button
