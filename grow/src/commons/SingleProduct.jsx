@@ -138,6 +138,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
+      < Comments/>
     </div>
   );
 };

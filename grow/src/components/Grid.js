@@ -10,9 +10,7 @@ const Grid = props => {
 
   useEffect(() => {
     axios.get('/api/product/').then(res => setProducts(res.data));
-  }, products);
-
-  console.log('soy products', products);
+  }, []);
 
   return (
     <div className='container d-flex justify-content-center mt-50 mb-50'>
