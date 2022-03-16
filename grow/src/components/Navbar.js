@@ -7,6 +7,7 @@ import "../style/Navbar.css";
 
 const Navbar = () => {
   return (
+
     <div className="shadow" style={{ backgroundColor: "#f8f9fa" }}>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">

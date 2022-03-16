@@ -16,7 +16,7 @@ const Card = ({ data }) => {
                   : 'https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png'
               }
               alt='Card image cap'
-            />{' '}
+            />
           </Link>
         </div>
         <div className='container-grid'>

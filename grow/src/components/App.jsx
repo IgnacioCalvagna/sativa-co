@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
@@ -10,6 +11,8 @@ import Footer from './Footer';
 import { persistUser } from '../state/user';
 import { getShoppingCart } from '../state/shoppingCart';
 
+
+import OrderItem from '../commons/OrderItem.jsx';
 import SingleProduct from '../commons/SingleProduct.jsx';
 import AdminUsers from "./AdminUsers";
 import AdminOrders from "./AdminOrders";
@@ -56,6 +59,8 @@ function App() {
               </>
             }
           />
+          <Route path='/orders' element={<OrderHistorial />} />
+          <Route path='/orders/:id' element={<OrderItem />} />
           <Route path='/product/:id' element={<SingleProduct />} />
           <Route path='/admin/users' element={<AdminUsers />} />
           <Route path='/admin/orders' element={<AdminOrders />} />

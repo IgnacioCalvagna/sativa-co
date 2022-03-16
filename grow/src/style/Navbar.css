@@ -7,7 +7,6 @@
 }
 
 .dropdown1{
-    
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -26,6 +25,7 @@
 .title{
     margin-left: 10px;
     font-size: 1.7em;
+
 }
 .navbar-expand-lg {
     flex-wrap: nowrap;
