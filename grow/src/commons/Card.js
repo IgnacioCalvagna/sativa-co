@@ -9,10 +9,10 @@ const Card = ({ data }) => {
         <div className='image-grid-container'>
           <Link to={`/product/${data.id}`}>
             <img
-              class='card-img'
+              className='card-img'
               src={
                 data.img
-                  ? data.img
+                  ? data.img[0]
                   : 'https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png'
               }
               alt='Card image cap'

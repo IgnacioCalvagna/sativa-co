@@ -8,6 +8,7 @@ import {
   sendSignUpRequest,
   sendLogoutRequest,
 } from '../state/user';
+import {getShoppingCart} from '../state/shoppingCart'
 
 
 
@@ -46,7 +47,8 @@ export const Login = () => {
         email: email.value,
         password: password.value,
       })
-    ).then(() => {
+    )
+    .then(() => {
       window.location.reload(false);
     });
   };
