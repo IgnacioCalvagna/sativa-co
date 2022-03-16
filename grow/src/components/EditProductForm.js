@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import useInput from "../hooks/useInput";
 
 const EditProductForm = () => {
   const { id } = useParams();
@@ -19,19 +18,29 @@ const EditProductForm = () => {
     img: ["", "", "", ""],
   });
 
-  const handlePathChange = (e)=>{
-    const otroObj = Object.assign({}, product)
-    otroObj.img[parseInt(e.target.id[e.target.id.length-1])]=e.target.value
-    setProduct(otroObj)
-  }
+  const [checkedState, setCheckedState] = useState([]);
+
+  const handlePathChange = (e) => {
+    const otroObj = Object.assign({}, product);
+    otroObj.img[parseInt(e.target.id[e.target.id.length - 1])] = e.target.value;
+    setProduct(otroObj);
+  };
 
   useEffect(() => {
-    axios.get(`/api/product/${id}`).then((res) => setProduct(res.data));
+    axios
+      .get(`/api/product/${id}`)
+      .then((res) => {
+        setProduct(res.data);
+        return res.data.category;
+      })
+      .then((returnedCateg) => {
+        let checkedinitial = categorias.map((categ) => categ === returnedCateg);
+        setCheckedState(checkedinitial);
+      });
   }, [id]);
 
-
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios.put(`/api/product/${product.id}`, product);
   };
 
@@ -42,6 +51,13 @@ const EditProductForm = () => {
     "Sustratos",
     "Picadores",
   ];
+
+  const handleOnChangeCheck = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  };
 
   return (
     <div className="container singleProductDiv">
@@ -87,21 +103,24 @@ const EditProductForm = () => {
              */}
 
             <div className="form-check">
-              {categorias.map((categ) => {
+              {/* {
+                let anotherCHeck = true
+                return ()
+              } */}
+
+              {categorias.map((categ, index) => {
+                //ACA FALTA QUE PRODUCT.CATEGORY SEA UN ARRAY
+                const checked = product.category === categ;
+                console.log(`${categ} es ${checked}`);
                 return (
                   <div>
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      value={categ}
                       name={categ}
-                      checked={
-                        product.category
-                          ? product.category.indexOf(categ) !== -1
-                            ? true
-                            : false
-                          : false
-                      }
+                      //falta value
+                      checked={checkedState[index]}
+                      onChange={()=>handleOnChangeCheck(index)}
                     />
                     <label
                       className="form-check-label"
