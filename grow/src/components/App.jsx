@@ -10,15 +10,15 @@ import Footer from './Footer';
 import { persistUser } from '../state/user';
 import { getShoppingCart } from '../state/shoppingCart';
 
-
 import OrderItem from '../commons/OrderItem.jsx';
 import SingleProduct from '../commons/SingleProduct.jsx';
-import AdminUsers from "./AdminUsers";
-import AdminOrders from "./AdminOrders";
-import AdminProducts from "./AdminProducts";
-import NewProductForm from "./NewProductForm"
-import EditProductForm from "./EditProductForm";
+import AdminUsers from './AdminUsers';
+import AdminOrders from './AdminOrders';
+import AdminProducts from './AdminProducts';
+import NewProductForm from './NewProductForm';
+import EditProductForm from './EditProductForm';
 import { getItemCart } from '../state/itemCart';
+import OrderHistorial from './OrderHistorial';
 
 function App() {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function App() {
   // }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar />
       {/* <div className="container"> */}
       <Routes>
@@ -54,19 +54,22 @@ function App() {
               <CarouselComponent />
               <div className='container'>
                 <Grid />
-                </div>
-              </>
-            }
-          />
-          <Route path='/orders' element={<OrderHistorial />} />
-          <Route path='/orders/:id' element={<OrderItem />} />
-          <Route path='/product/:id' element={<SingleProduct />} />
-          <Route path='/admin/users' element={<AdminUsers />} />
-          <Route path='/admin/orders' element={<AdminOrders />} />
-          <Route path='/admin/products' element={<AdminProducts />} />
-          <Route path='/admin/products/new-product' element={<NewProductForm/>} />
-          <Route path='/admin/products/edit/:id' element={<EditProductForm/>} />
-        </Routes>
+              </div>
+            </>
+          }
+        />
+        <Route path='/orders' element={<OrderHistorial />} />
+        <Route path='/orders/:id' element={<OrderItem />} />
+        <Route path='/product/:id' element={<SingleProduct />} />
+        <Route path='/admin/users' element={<AdminUsers />} />
+        <Route path='/admin/orders' element={<AdminOrders />} />
+        <Route path='/admin/products' element={<AdminProducts />} />
+        <Route
+          path='/admin/products/new-product'
+          element={<NewProductForm />}
+        />
+        <Route path='/admin/products/edit/:id' element={<EditProductForm />} />
+      </Routes>
       {/* </div> */}
       <Footer />
     </div>

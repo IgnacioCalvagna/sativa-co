@@ -9,7 +9,6 @@ const Card = ({ data }) => {
         <div className='image-grid-container'>
           <Link to={`/product/${data.id}`}>
             <img
-
               className='card-img'
               src={
                 data.img
@@ -23,12 +22,8 @@ const Card = ({ data }) => {
         <div className='container-grid'>
           <Link to={`/product/${data.id}`}>
             <div>
-              <button type='button' className='button-grid'>
-                <i class=''></i> Ver Detalle
               <button type='button' className='buttonItem'>
-                 Add to cart
-              <button type='button' className='buttonItem'>
-                Ver Detalles
+                Add to cart
               </button>
             </div>
           </Link>

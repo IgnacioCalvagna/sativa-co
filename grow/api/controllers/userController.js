@@ -46,7 +46,6 @@ exports.update = (req,res)=>{
       });
 
     });
-  });
 };
 
 exports.me = (req, res) => {
