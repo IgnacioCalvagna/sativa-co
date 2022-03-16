@@ -18,7 +18,7 @@ const EditProductForm = () => {
     img: ["", "", "", ""],
   });
 
-  const [checkedState, setCheckedState] = useState([]);
+  const [checkedState, setCheckedState] = useState({});
 
   const handlePathChange = (e) => {
     const otroObj = Object.assign({}, product);
@@ -34,8 +34,11 @@ const EditProductForm = () => {
         return res.data.category;
       })
       .then((returnedCateg) => {
-        let checkedinitial = categorias.map((categ) => categ === returnedCateg);
-        setCheckedState(checkedinitial);
+        let auxObj = {};
+        categorias.forEach((categ) => {
+          auxObj[categ] = categ === returnedCateg;
+        });
+        setCheckedState(auxObj);
       });
   }, [id]);
 
@@ -50,12 +53,25 @@ const EditProductForm = () => {
     "Fertilizantes",
     "Sustratos",
     "Picadores",
+    "fungicida"
   ];
 
-  const handleOnChangeCheck = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
+  const handleOnChangeCheck = (categ) => {
+    const updatedCheckedState = { ...checkedState };
+    console.log(`updatedcheckstate es`, updatedCheckedState);
+    console.log(`categ es`, categ);
+
+    for (const property in updatedCheckedState) {
+      console.log(`property es`, property)
+      property == categ
+        ? (updatedCheckedState[categ] = !updatedCheckedState[categ])
+        : (updatedCheckedState[categ] = updatedCheckedState[categ]);
+    }
+    // const updatedCheckedState = checkedState.forin((item, index) =>
+    //   index === position ?] !item : item
+    // );
+    console.log(`updatedcheckstate es`, updatedCheckedState);
+
     setCheckedState(updatedCheckedState);
   };
 
@@ -110,17 +126,15 @@ const EditProductForm = () => {
 
               {categorias.map((categ, index) => {
                 //ACA FALTA QUE PRODUCT.CATEGORY SEA UN ARRAY
-                const checked = product.category === categ;
-                console.log(`${categ} es ${checked}`);
                 return (
                   <div>
                     <input
                       className="form-check-input"
                       type="checkbox"
                       name={categ}
-                      //falta value
-                      checked={checkedState[index]}
-                      onChange={()=>handleOnChangeCheck(index)}
+                      value={categ}
+                      checked={checkedState[categ]}
+                      onChange={() => handleOnChangeCheck(categ)}
                     />
                     <label
                       className="form-check-label"
@@ -169,7 +183,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[0]}
+              value={product.img? product.img[0]: ''}
               onChange={handlePathChange}
               id="path0"
             />
@@ -178,7 +192,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[1]}
+              value={product.img? product.img[1]: ''}
               onChange={handlePathChange}
               id="path1"
             />
@@ -187,7 +201,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[2]}
+              value={product.img? product.img[2]: ''}
               onChange={handlePathChange}
               id="path2"
             />
@@ -196,7 +210,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[3]}
+              value={product.img? product.img[3]: ''}
               onChange={handlePathChange}
               id="path3"
             />

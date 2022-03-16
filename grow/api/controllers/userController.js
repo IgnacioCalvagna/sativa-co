@@ -6,11 +6,6 @@ exports.getAll = (req, res) => {
 };
 
 
-exports.getAll = (req, res) =>{
-  User.findAll().then((users) => res.send(users));
-}
-
-
 exports.register = (req, res) => {
   const { name, lastname, email, password } = req.body;
   const roleId = 1;

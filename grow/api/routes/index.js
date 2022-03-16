@@ -9,7 +9,7 @@ const orderItem = require('./orderItem');
 const shoppingCart = require('./shoppingCart')
 const itemCart = require('./itemCart')
 
-
+const category = require('./category')
 
 router.use('/user', user)
 router.use('/product', product)
@@ -20,7 +20,7 @@ router.use('/orderItem', orderItem)
 router.use('/shoppingCart', shoppingCart);
 router.use('/itemCart', itemCart)
 
-
+router.use('/category', category)
 
 
 
