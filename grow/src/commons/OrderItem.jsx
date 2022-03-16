@@ -25,9 +25,9 @@ const OrderItem = ({ data }) => {
               <div classname="orderContainer3">
                 <div class="accordion" id={data.id}>
                   <a></a>
-                  <a>Order N. {data.order_id}  |</a>
+                  <a>Order N. {data.order_id} |</a>
                   <a>| $.{data.payment_id} |</a>
-                  <a>|  Date: {data.created_at}</a>
+                  <a>| Date: {data.created_at}</a>
                 </div>
               </div>
             </button>
@@ -41,14 +41,16 @@ const OrderItem = ({ data }) => {
             <div class="">
               {datas2.map((data2, i) => (
                 <div className="orderContainer3">
-                <div className="">
-                  <img class="order-card-img" src={data2.images} />
-                  <Link to={`/product/${data2.product_id}`}>{data2.name}</Link>
-                </div>
-                <div className="orderContainer2">
-                  <div>Qty: {data2.quantity}</div>
-                  <div>Price: {(data2.name * data2.quantity)}</div>
-                </div>
+                  <div className="">
+                    <img class="order-card-img" src={data2.images} />
+                    <Link to={`/product/${data2.product_id}`}>
+                      {data2.name}
+                    </Link>
+                  </div>
+                  <div className="orderContainer2">
+                    <div>Qty: {data2.quantity}</div>
+                    <div>Price: ${(data2.price * data2.quantity)}</div>
+                  </div>
                 </div>
               ))}
             </div>
