@@ -1,147 +1,139 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import axios from 'axios';
-import Comments from '../components/Comments'
-
-import './SingleProduct.css';
+import "./SingleProduct.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import axios from "axios";
 
 const SingleProduct = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
+  const [mainSrc, setMainSrc] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    axios.get(`/api/product/${id}`).then(res => setProduct(res.data));
-  },[]);
+    axios.get(`/api/product/${id}`).then((res) => {
+      setProduct(res.data);
+    });
+  }, [id]);
 
-  console.log(product);
-
-  const [mainSrc, setmainSrc] = useState(
-    `https://d3ugyf2ht6aenh.cloudfront.net/stores/001/220/151/products/diseno-sin-titulo1-1f5611561891399a3116249850976584-1024-1024.png`
-  );
-
-  const arrImg = [
-    product.img,
-    product.img,
-    product.img,
-    product.img,
-    product.img,
-    product.img,
-  ];
-
-  const handleImageClick = event => {
-    setmainSrc(event.target.src);
-    console.log(document.getElementsByClassName('thumbnails-div'));
+  const handleImageClick = (event) => {
+    setMainSrc(event.target.src);
   };
 
   const prevImg = () => {
-    if (arrImg.indexOf(mainSrc) > 0) {
-      setmainSrc(arrImg[arrImg.indexOf(mainSrc) - 1]);
+    if (product.img.indexOf(mainSrc) > 0) {
+      setMainSrc(product.img[product.img.indexOf(mainSrc) - 1]);
     }
   };
 
   const nextImg = () => {
-    console.log(`index es`, arrImg.indexOf(mainSrc));
-    console.log(`length es`, arrImg.length);
-    if (arrImg.indexOf(mainSrc) < arrImg.length - 1) {
-      setmainSrc(arrImg[arrImg.indexOf(mainSrc) + 1]);
+    if (product.img.indexOf(mainSrc) < product.img.length - 1) {
+      setMainSrc(product.img[product.img.indexOf(mainSrc) + 1]);
     }
   };
 
   return (
-    <div className='container singleProduct'>
-      <div className='row' style={{ justifyContent: 'center' }}>
-        <div className='row d-flex col-lg-5 product-images '>
-          <div className='row thumbnails-div col-4'>
-            <img
-              className='product-thumbnail'
-              src={arrImg[0]}
-              onClick={handleImageClick}
-            />
-            <img
-              className='product-thumbnail'
-              src={arrImg[1]}
-              onClick={handleImageClick}
-            />
-            <img
-              className='product-thumbnail'
-              src={arrImg[2]}
-              onClick={handleImageClick}
-            />
-            <img
-              className='product-thumbnail'
-              src={arrImg[3]}
-              onClick={handleImageClick}
-            />
-            <img
-              className='product-thumbnail'
-              src={arrImg[4]}
-              onClick={handleImageClick}
-            />
-            <img
-              className='product-thumbnail'
-              src={arrImg[5]}
-              onClick={handleImageClick}
-            />
+    <div className="container singleProductDiv">
+      <div className="row" style={{ justifyContent: "center" }}>
+        <div className="row d-flex col-lg-5 product-images ">
+          <div className="row thumbnails-div col-4">
+            {product.img
+              ? product.img.map((ruta, index) => {
+                  return (
+                    <img
+                      className="product-thumbnail"
+                      src={ruta}
+                      onClick={handleImageClick}
+                      alt="product"
+                      key={index}
+                    ></img>
+                  );
+                })
+              : null}
           </div>
-          <div className='main-image col-8'>
+          <div className="main-image col-8">
             <img
-              id='featured'
-              className='img-fluid product-img'
+              id="featured"
+              className="img-fluid product-img"
+              alt="main product"
               style={{
-                alignSelf: 'center',
-                width: 'auto',
-                maxHeight: '400px',
-                margin: 'auto',
+                alignSelf: "center",
+                width: "auto",
+                maxHeight: "400px",
+                margin: "auto",
               }}
-              src={mainSrc}
+              src={
+                product.img
+                  ? mainSrc
+                    ? mainSrc
+                    : product.img[0]
+                  : "https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png"
+              }
             />
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '20px',
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "20px",
               }}
+              className="arrowDiv"
             >
-              <div onClick={prevImg} className='arrow'>
-                {'<'}
-              </div>
-              <div onClick={nextImg} className='arrow'>
-                {'>'}
-              </div>
+              <button onClick={prevImg} className="arrow">
+                <ion-icon name="chevron-back-circle-outline"></ion-icon>
+              </button>
+              <button onClick={nextImg} className="arrow">
+                <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+              </button>
             </div>
           </div>
         </div>
 
-        <div className='col-lg-7'>
-          <h1 className='text-start product-name'>{product.name}</h1>
-          <div className='rating-div text-start'>
-            {' '}
-            {'rating 4'} {'star-icon'} {'2 Reviews'}
+        <div className="col-lg-7">
+          <h1 className="text-start product-name">{product.name}</h1>
+          <div className="rating-div text-start">
+            <span className="rating-span">
+              <span className="ratingNumber-span">{"4"}</span>{" "}
+              <ion-icon name="star-outline"></ion-icon>
+            </span>{" "}
+            <span>{2} Reviews</span>
           </div>
-          <div className='product-price text-start d-flex'>
-            <span className='price'>$ {product.price}</span>
-            <span className='stock'>Stock {product.stock}</span>
+          <div className="product-price text-start d-flex">
+            <span className="price">$ {product.price}</span>
+            <span className="stock">Stock {product.stock}</span>
           </div>
 
-          <div className='product-description text-start'>
+          <div className="product-description text-start">
             <h4>Detalles del producto</h4>
             <p>{product.description}</p>
           </div>
-          <div className='text-start'>
-            <label htmlFor='quantity'>Cantidad: </label>
-            <div className='d-flex buyDiv'>
-              <div className='d-flex'>
-                <button className='btn btn-light'>+</button>
+          <div className="text-start">
+            <label htmlFor="quantity">Cantidad: </label>
+            <div className="d-flex buyDiv">
+              <div className="d-flex">
+                <button
+                  className="btn btn-light"
+                  onClick={() => {
+                    if (quantity > 0) setQuantity(quantity - 1);
+                  }}
+                >
+                  -
+                </button>
                 <input
-                  id='quantity'
-                  style={{ maxWidth: '80px', textAlign: 'center' }}
-                  className='form-control'
-                  placeholder='1'
+                  id="quantity"
+                  style={{ maxWidth: "80px", textAlign: "center" }}
+                  className="form-control"
+                  placeholder="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
                 ></input>
-                <button className='btn btn-light'>-</button>
+                <button
+                  className="btn btn-light"
+                  onClick={() => setQuantity(parseInt(quantity) + 1)}
+                >
+                  +
+                </button>
               </div>
-              <button className='btn btn-primary'>Agregar a carrito</button>
+              <button className="btn btn-primary">Agregar a carrito</button>
             </div>
           </div>
         </div>

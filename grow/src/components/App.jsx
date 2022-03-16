@@ -11,6 +11,11 @@ import { persistUser } from '../state/user';
 import { getShoppingCart } from '../state/shoppingCart';
 
 import SingleProduct from '../commons/SingleProduct.jsx';
+import AdminUsers from "./AdminUsers";
+import AdminOrders from "./AdminOrders";
+import AdminProducts from "./AdminProducts";
+import NewProductForm from "./NewProductForm"
+import EditProductForm from "./EditProductForm";
 import { getItemCart } from '../state/itemCart';
 
 function App() {
@@ -27,12 +32,13 @@ function App() {
   }, [user.id]);
 
   const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get('/api/product/')
-      .then(res => res.data)
-      .then(products => setProducts(products.items));
-  }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get('/api/products')
+  //     .then(res => res.data)
+  //     .then(products => setProducts(products.items));
+  // }, []);
 
   return (
     <div className='App'>
@@ -46,12 +52,18 @@ function App() {
               <CarouselComponent />
               <div className='container'>
                 <Grid />
-              </div>
-            </>
-          }
-        />
-        <Route path='/product/:id' element={<SingleProduct />} />
-      </Routes>
+                </div>
+              </>
+            }
+          />
+          <Route path='/product/:id' element={<SingleProduct />} />
+          <Route path='/admin/users' element={<AdminUsers />} />
+          <Route path='/admin/orders' element={<AdminOrders />} />
+          <Route path='/admin/products' element={<AdminProducts />} />
+          <Route path='/admin/products/new-product' element={<NewProductForm/>} />
+          <Route path='/admin/products/edit/:id' element={<EditProductForm/>} />
+
+        </Routes>
       {/* </div> */}
       <Footer />
     </div>
