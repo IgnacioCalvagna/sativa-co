@@ -9,5 +9,5 @@ exports.get = (req, res) => {
     defaults: {
       total: 0,
     },
-  }).then(shoppingCart => res.send(shoppingCart));
+  }).then(shoppingCart => res.send(shoppingCart[0]));
 };

@@ -34,7 +34,7 @@ const shoppingCartReducer = createReducer(
   {
     [addToShoppingCart.fulfilled]: (state, action) => action.payload,
     [removeFromShoppingCart.fulfilled]: (state, action) => action.payload,
-    [getShoppingCart.fulfilled]: (state, action) => action.payload[0],
+    [getShoppingCart.fulfilled]: (state, action) => action.payload,
   }
 );
 

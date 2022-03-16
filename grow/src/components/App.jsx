@@ -11,6 +11,7 @@ import { persistUser } from '../state/user';
 import { getShoppingCart } from '../state/shoppingCart';
 
 import SingleProduct from '../commons/SingleProduct.jsx';
+import { getItemCart } from '../state/itemCart';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,13 +23,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    dispatch(getShoppingCart());
+    dispatch(getShoppingCart()).then(() => dispatch(getItemCart()));
   }, [user.id]);
 
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get('/api/products')
+      .get('/api/product/')
       .then(res => res.data)
       .then(products => setProducts(products.items));
   }, []);

@@ -19,7 +19,6 @@ exports.postOrAdd = (req, res) => {
       );
     })
     .then(data => {
-      console.log(data);
       res.send(data[1]);
     });
 };
@@ -33,4 +32,11 @@ exports.getAll = (req, res) => {
   }).then(data => {
     res.send(data);
   });
+};
+
+exports.delete = (req, res) => {
+  const { id } = req.params;
+  ItemCart.destroy({
+    where: { id },
+  }).then(() => res.send(204));
 };

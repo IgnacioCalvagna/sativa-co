@@ -6,4 +6,6 @@ router.post('/', itemCart.postOrAdd);
 
 router.get('/:id', itemCart.getAll);
 
+router.delete('/remove/:id', itemCart.delete);
+
 module.exports = router;
