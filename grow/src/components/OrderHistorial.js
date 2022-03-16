@@ -1,13 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+// import { useParams } from "react-router";
+// import { Link } from "react-router-dom";
 import FakeOrders from "../utils/FakeOrders.js";
 import OrderItem from "../commons/OrderItem"
 
 import "../style/OrderHistorial.css";
 
-const OrderHistorial = (props) => {
+const OrderHistorial = () => {
     const datas = FakeOrders
   return (
     <div classname="">
@@ -15,6 +15,7 @@ const OrderHistorial = (props) => {
               <div className="order-title">Order Historial</div>
 
               <div className="">
+
               {datas.map((data, i) => (
                   <OrderItem data={data}/>
               ))}
@@ -25,3 +26,5 @@ const OrderHistorial = (props) => {
 };
 
 export default OrderHistorial;
+
+
