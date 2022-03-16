@@ -8,6 +8,7 @@ import "../style/AdminUsers.css";
 //FALTA: - Considerar que un admin no puede autorrevocarse un permiso.
 
 const AdminUsers = () => {
+  
   const searchValue = useInput("");
 
   const user = useSelector((state) => state.user);
