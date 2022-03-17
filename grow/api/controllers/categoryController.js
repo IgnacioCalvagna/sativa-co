@@ -15,9 +15,27 @@ exports.addCategoryProduct = (req, res) => {
 
 exports.deleteRelation = (req, res) => {
   const { productId, categoryId } = req.body;
-  Product.findByPk(productId).then((product) => {
-    product.removeCategoria(categoryId);
-  });
+  Product.findByPk(productId)
+    .then((product) => {
+      product.removeCategoria(categoryId);
+    })
+    .then((result) => res.send(result));
+};
+
+exports.updateRelation = (req, res) => {
+  const { productId, objCategoryId } = req.body;
+  //categoryId es un array
+  const addcategoryIdsArr = [];
+//   const removecategoryIdsArr = [];
+  for (const categId in objCategoryId) {
+    if (objCategoryId[categId]) addcategoryIdsArr.push(categId);
+    // else removecategoryIdsArr.push(categId);
+  }
+  //crear arr de categoryIds
+  Product.findByPk(productId)
+    .then((product) => {
+      product.setCategorias(addcategoryIdsArr)})    
+    .then((result) => res.send(result));
 };
 
 exports.newCategory = (req, res) => {
@@ -33,7 +51,7 @@ exports.getAll = (req, res) => {
 
 exports.getCatsByProdId = (req, res) => {
   const { id } = req.params;
-  console.log(`id es`, id)
+  console.log(`id es`, id);
   Product.findByPk(id)
     .then((product) => {
       return product.getCategorias();

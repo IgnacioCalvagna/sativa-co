@@ -12,7 +12,6 @@ const EditProductForm = () => {
     id: "",
     name: "",
     description: "",
-    category: "",
     price: "",
     stock: "",
     img: ["", "", "", ""],
@@ -36,7 +35,7 @@ const EditProductForm = () => {
         return axios.get(`/api/category/productcategories/${id}`);
       })
       .then(({ data }) => {
-        setProductCategories(data);
+        // setProductCategories(data);
         axios.get("/api/category/getAll").then((res) => {
           let everyCategory = res.data;
           let otroObj = {};
@@ -62,21 +61,13 @@ const EditProductForm = () => {
 
   const [allCategories, setAllCategories] = useState([]);
 
-  const [productCategories, setProductCategories] = useState([]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`/api/product/${product.id}`, product);
+    axios.put(`/api/product/${product.id}`, product)
+    .then(()=>{
+      return axios.put(`/api/category/updateRelation`, {productId: product.id, objCategoryId: checkedState})
+    })
   };
-
-  const categorias = [
-    "Lámparas",
-    "Carpas",
-    "Fertilizantes",
-    "Sustratos",
-    "Picadores",
-    "fungicida",
-  ];
 
   const handleOnChangeCheck = (categ) => {
     const updatedCheckedState = { ...checkedState };
@@ -88,9 +79,6 @@ const EditProductForm = () => {
       if (property == categ)
         updatedCheckedState[categ] = !updatedCheckedState[categ];
     }
-    // const updatedCheckedState = checkedState.forin((item, index) =>
-    //   index === position ?] !item : item
-    // );
     console.log(`updatedcheckstate es`, updatedCheckedState);
 
     setCheckedState(updatedCheckedState);
@@ -156,7 +144,7 @@ const EditProductForm = () => {
                       name={categ.name}
                       value={categ.id}
                       checked={checkedState[categ.id]}
-                      onChange={() => handleOnChangeCheck(categ.name)}
+                      onChange={() => handleOnChangeCheck(categ.id)}
                     />
                     <label
                       className="form-check-label"
