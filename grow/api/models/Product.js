@@ -30,4 +30,9 @@ Product.init(
   { sequelize: db, modelName: 'products' }
 );
 
+
+
+
+
+
 module.exports = Product;

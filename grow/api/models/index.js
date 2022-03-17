@@ -8,6 +8,13 @@ const Product = require('./Product');
 const ShoppingCart = require('./ShoppingCart');
 const User = require('./User');
 const Role = require('./Role');
+const ProductComment = require('./ProductComment');
+const ProductValoration = require('./ProductValoration');
+
+
+ProductComment.belongsTo(Product);
+ProductValoration.belongsTo(Product);
+
 
 ShoppingCart.belongsTo(User);
 User.hasOne(ShoppingCart);
@@ -32,6 +39,7 @@ OrderDetail.hasMany(OrderItem);
 OrderDetail.belongsTo(User);
 User.hasMany(OrderDetail);
 
+
 PaymentDetail.belongsTo(OrderDetail);
 
 Product.belongsToMany(Category, {as: 'categorias', through: 'product_category'})
@@ -48,4 +56,6 @@ module.exports = {
   OrderItem,
   PaymentDetail,
   ShoppingCart,
+  ProductComment,
+  ProductValoration,
 };
