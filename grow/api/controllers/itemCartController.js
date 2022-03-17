@@ -3,7 +3,12 @@ const { Product } = require('../models');
 
 exports.postOrAdd = (req, res) => {
   const { quantity, productId, ShoppingCartId } = req.body;
-
+  console.log(
+    'soy el req body que te llegó',
+    quantity,
+    productId,
+    ShoppingCartId
+  );
   ItemCart.findOrCreate({
     where: { productId, ShoppingCartId },
     defaults: { quantity },

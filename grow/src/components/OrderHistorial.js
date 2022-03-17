@@ -14,10 +14,10 @@ const OrderHistorial = () => {
             <div className="">
               <div className="order-title">Order Historial</div>
 
-              <div className="">
+              <div className="orderContainer">
 
               {datas.map((data, i) => (
-                  <OrderItem data={data}/>
+                  <OrderItem data={data} key={i} id={i}/>
               ))}
             </div>
     </div>

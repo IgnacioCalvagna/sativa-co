@@ -1,0 +1,111 @@
+.starts{
+    padding: 5px;
+    width: 250px;
+    height: 60px;
+    transition: transform 0.3s;
+    display: flex;
+    background-color: white;
+}
+.start1{
+    font-size:26px;
+    border:none;
+    color:rgb(235, 235, 21);
+    margin: 4.2px;
+    padding: 0;
+}
+.start2{
+    font-size:26px;
+    border:none;
+    color:rgb(235, 235, 21);
+    margin: 4.2px;
+    padding: 0;
+}
+.start3{
+    font-size:26px;
+    border:none;
+    color:rgb(235, 235, 21);
+    margin: 4.2px;
+    padding: 0;
+}
+.start4{
+    font-size:26px;
+    border:none;
+    color:rgb(235, 235, 21);
+    margin: 4.2px;
+    padding: 0;
+}
+.start5{
+    font-size:26px;
+    border:none;
+    color:rgb(235, 235, 21);
+    padding:1%;
+    margin: 4.2px;
+    padding: 0;
+}
+
+.start11{
+    font-size:26px;
+    border:none;
+    color:rgb(180, 180, 158);
+    padding:1%;
+    margin: 4.2px;
+    padding: 0;
+}
+.start22{
+    font-size:26px;
+    border:none;
+    color:rgb(180, 180, 158);
+    padding:1%;
+    margin: 4.2px;
+    padding: 0;
+}
+.start33{
+    font-size:26px;
+    border:none;
+    color:rgb(180, 180, 158);
+    padding:1%;
+    margin: 4.2px;
+    padding: 0;
+}
+.start44{
+    font-size:26px;
+    border:none;
+    color:rgb(180, 180, 158);
+    padding:1%;
+    margin: 4.2px;
+    padding: 0;
+}
+.start55{
+    font-size:26px;
+    border:none;
+    color:rgb(180, 180, 158);
+    padding:1%;
+    margin: 4.2px;
+    padding: 0;
+}
+
+.start1:hover{
+     -webkit-transform:scale(2);
+    transform:scale(1.5);
+    transition: transform 0.3s;
+}
+.start2:hover{
+     -webkit-transform:scale(2);
+    transform:scale(1.5);
+    transition: transform 0.3s;
+}
+.start3:hover{
+     -webkit-transform:scale(2);
+    transform:scale(1.5);
+    transition: transform 0.3s;
+}
+.start4:hover{
+     -webkit-transform:scale(2);
+    transform:scale(1.5);
+    transition: transform 0.3s;
+}
+.start5:hover{
+     -webkit-transform:scale(2);
+    transform:scale(1.5);
+    transition: transform 0.3s;
+}

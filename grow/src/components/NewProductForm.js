@@ -1,8 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import useInput from "../hooks/useInput";
 
 const NewProductForm = () => {
+
+  const navigate = useNavigate()
+  const [allCategories, setAllCategories] = useState([])
+  const [checkedState, setCheckedState] = useState({});
+
+  useEffect(() => {
+    axios.get("/api/category/getAll").then(({ data }) => {
+      setAllCategories(data);
+      return data
+    }).then(categories=>{
+      let auxObj = {}
+      categories.forEach(categObj => {
+        auxObj[categObj.id] = false
+      })
+      console.log(`auxobj es`, auxObj)
+      setCheckedState(auxObj)
+    })
+  }, []);
+
   const categorias = ["Lámparas", "Carpas", "Fertilizantes", "Sustratos"];
 
   const name = useInput("");
@@ -41,16 +61,27 @@ const NewProductForm = () => {
         imagePath3.value,
         imagePath4.value,
       ],
-    });
+    }).then((res)=>{
+      const productId = res.data[0].id
+      axios.post("/api/category/addmanyRelations", {productId, objCategoryId: checkedState})
+    })
+    .then(()=>navigate("/admin/products"))
   };
 
+  const handleOnChangeCheck = (categ) => {
+    const updatedCheckedState = { ...checkedState };
+    console.log(`updatedcheckstate es`, updatedCheckedState);
+    console.log(`categ es`, categ);
 
-  // useEffect(()=> {
-  //   for(let i=0; i<categorias.length; i++) {
-  //     const [`categoria${i}`, `setCategoria${i}`]
-  //   }
-  // })
+    for (const property in updatedCheckedState) {
+      console.log(`property es`, property);
+      if (property == categ)
+        updatedCheckedState[categ] = !updatedCheckedState[categ];
+    }
+    console.log(`updatedcheckstate es`, updatedCheckedState);
 
+    setCheckedState(updatedCheckedState);
+  };
 
   return (
     <div className="container singleProductDiv">
@@ -92,20 +123,22 @@ const NewProductForm = () => {
              */}
 
             <div className="form-check">
-              {categorias.map((category) => {
+              {allCategories.map((categoryObj) => {
                 return (
                   <div>
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      value={category}
-                      name={category}
+                      value={categoryObj.name}
+                      name={categoryObj.name}
+                      checked={checkedState[categoryObj.id]}
+                      onChange={() => handleOnChangeCheck(categoryObj.id)}
                     />
                     <label
                       className="form-check-label"
                       htmlFor="flexCheckDefault"
                     >
-                      {category}
+                      {categoryObj.name}
                     </label>
                   </div>
                 );
