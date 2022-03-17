@@ -62,16 +62,16 @@ const SingleProduct = () => {
           <div className='row thumbnails-div col-4'>
             {product.img
               ? product.img.map((ruta, index) => {
-                return (
-                  <img
-                    className='product-thumbnail'
-                    src={ruta}
-                    onClick={handleImageClick}
-                    alt='product'
-                    key={index}
-                  ></img>
-                );
-              })
+                  return (
+                    <img
+                      className='product-thumbnail'
+                      src={ruta}
+                      onClick={handleImageClick}
+                      alt='product'
+                      key={index}
+                    ></img>
+                  );
+                })
               : null}
           </div>
           <div className='main-image col-8'>
@@ -112,73 +112,64 @@ const SingleProduct = () => {
         </div>
 
         <div className='col-lg-7'>
-        <div>
-          <h1 className='text-start product-name'>{product.name}</h1>
-          <div className='rating-div text-start'>
-            <span className='rating-span'>
-              <span className='ratingNumber-span'>{'4'}</span>{' '}
-              <ion-icon name='star-outline'></ion-icon>
-            </span>{' '}
-            <span>{2} Reviews</span>
-          </div>
-          <div className='product-price text-start d-flex'>
-            <span className='price'>$ {product.price}</span>
-            <span className='stock'>Stock {product.stock}</span>
-          </div>
+          <div>
+            <h1 className='text-start product-name'>{product.name}</h1>
+            <div className='rating-div text-start'>
+              <span className='rating-span'>
+                <span className='ratingNumber-span'>{'4'}</span>{' '}
+                <ion-icon name='star-outline'></ion-icon>
+              </span>{' '}
+              <span>{2} Reviews</span>
+            </div>
+            <div className='product-price text-start d-flex'>
+              <span className='price'>$ {product.price}</span>
+              <span className='stock'>Stock {product.stock}</span>
+            </div>
 
-          <div className='product-description text-start'>
-            <h4>Detalles del producto</h4>
-            <p>{product.description}</p>
-          </div>
-          <div className='text-start'>
-            <label htmlFor='quantity'>Cantidad: </label>
-            <div className='d-flex buyDiv'>
-              <div className='d-flex'>
-                <button
-                  className='btn btn-light'
-                  onClick={() => {
-                    if (quantity > 0) setQuantity(quantity - 1);
-                  }}
-                >
-                  -
-                </button>
-                <input
-                  id='quantity'
-                  style={{ maxWidth: '80px', textAlign: 'center' }}
-                  className='form-control'
-                  placeholder='1'
-                  value={quantity}
-                  onChange={e => setQuantity(e.target.value)}
-                ></input>
-                <button
-                  className='btn btn-light'
-                  onClick={() => setQuantity(parseInt(quantity) + 1)}
-                >
-                  +
-                </button>
-              </div>
-              </div>
-              <div className='columnRight'>
-                <Valoration/>
-              <button
-                className='btn btn-primary'
-                onClick={() =>
-                  handleOnclick(product.id, quantity)
-                }
-              >
-                Agregar a carrito
-              </button>
+            <div className='product-description text-start'>
+              <h4>Detalles del producto</h4>
+              <p>{product.description}</p>
+            </div>
+            <div className='text-start'>
+              <label htmlFor='quantity'>Cantidad: </label>
+              <div className='d-flex buyDiv'>
+                <div className='d-flex'>
+                  <button
+                    className='btn btn-light'
+                    onClick={() => {
+                      if (quantity > 0) setQuantity(quantity - 1);
+                    }}
+                  >
+                    -
+                  </button>
+                  <input
+                    id='quantity'
+                    style={{ maxWidth: '80px', textAlign: 'center' }}
+                    className='form-control'
+                    placeholder='1'
+                    value={quantity}
+                    onChange={e => setQuantity(e.target.value)}
+                  ></input>
+                  <button
+                    className='btn btn-light'
+                    onClick={() => setQuantity(parseInt(quantity) + 1)}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="columnRight">
-            <Valoration/>
-            <button className='btn btn-primary'>Agregar a carrito</button>
+          <div className='columnRight'>
+            <Valoration />
+            <button
+              className='btn btn-primary'
+              onClick={() => handleOnclick(product.id, quantity)}
+            >
+              Agregar a carrito
+            </button>
           </div>
         </div>
-
-
-
       </div>
       <Comments />
     </div>

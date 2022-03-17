@@ -12,5 +12,3 @@ exports.getAllComments=(req, res) => {
     ProductComment.findAll({where:{productId}})
     .then(comments => res.send(comments));
 }
-
-
