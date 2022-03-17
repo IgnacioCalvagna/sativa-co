@@ -21,10 +21,11 @@
 
     {
       "name": "Fertilizantes ",
-      "description": "Fertilixante organico a vaces de algas marinas",
+      "description": "Melaza enrriquesida ",
       "category": "Fertilizantes",
       "price": 2000,
-      "stock": 158
+      "stock": 158,
+      "img":["https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nuevohanasono.com.ar%2Fproductos%2Fmelaza-enriquecida-fertilizante-organico-ecomambo%2F&psig=AOvVaw3I90MjAA_NGW-UKLSQLxPd&ust=1647623808974000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOiH0pDTzfYCFQAAAAAdAAAAABAG"]
     },
 
     {

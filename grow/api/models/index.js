@@ -9,9 +9,11 @@ const ShoppingCart = require('./ShoppingCart');
 const User = require('./User');
 const Role = require('./Role');
 const ProductComment = require('./ProductComment');
+const ProductValoration = require('./ProductValoration');
 
 
 ProductComment.belongsTo(Product);
+ProductValoration.belongsTo(Product);
 
 
 ShoppingCart.belongsTo(User);
@@ -51,4 +53,5 @@ module.exports = {
   PaymentDetail,
   ShoppingCart,
   ProductComment,
+  ProductValoration,
 };

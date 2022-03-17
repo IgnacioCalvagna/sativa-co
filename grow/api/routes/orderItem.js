@@ -1,20 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const {OrderItem}= require("../models")
+const orderIntemController = require("../controllers/orderItemController")
 
 
-router.post('/add',(req, res)=>{
-    const {price,quantity, productId ,orderdetailId} = req.body
-    OrderItem.create({price,quantity,productId ,orderdetailId}).then(newOrderItem => res.send(newOrderItem))
-})
-
-
-
-
-router.get('/getAll/:id',(req, res)=>{
-    const{id} = req.params;
-    OrderItem.findAll({where:{orderdetailId:id}})
-    .then(data => res.send(data)); 
-});
+router.post('/add', orderIntemController.add)
+router.get('/getAll/:id',orderIntemController.getAll);
 
 module.exports = router ;

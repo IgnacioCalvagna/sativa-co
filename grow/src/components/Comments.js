@@ -14,9 +14,10 @@ const Comments = () => {
     const user = useSelector(state => state.user);
     useEffect(() => {
         axios
-            .get(`api/productComment/:${id}`)
+            .get(`/api/productComment/${id}`)
             .then(res => {console.log("SOY EL RES------------>",res) 
-                setComments(res)})
+            
+               if(res.data) setComments(res)})
     }, [])
 
     const handleSubmit = (e) => {
@@ -28,13 +29,14 @@ const Comments = () => {
                 comment: comment.value,
                 productId: id
             })
-            // .then(() => {
-            //     axios
-            //         .get(`api/productComment/${id}`)
-            //         .then(res => setComments(res))
-            // }
-            //)
+            .then(() => {
+                axios
+                    .get(`/api/productComment/${id}`)
+                    .then(res => setComments(res))
+            }
+            )
     }
+    console.log("MIS COMMENTS ",comments)
     return (
         <div className="">
             <div className="titleComment">Tu comentario nos ayuda a mejorar</div>
@@ -48,7 +50,7 @@ const Comments = () => {
                             </button>
                             <div class="collapse" id="collapseExample">
                                 <div class="card-body">
-                                    Necesitas iniciar sesiÃ³n pra poder comentar
+                                    Necesitas iniciar sesion pra poder comentar
                                 </div>
                             </div>
                         </>
@@ -56,7 +58,7 @@ const Comments = () => {
             </form>
             <div>
                 {
-                    comments.map(({ userId, userName, comment }) => (
+                    comments?.data?.map(({ userId, userName, comment }) => (
                         <div key={userId} className="comment">
                             <h className="userComment">{userName}</h>
                             <p>{comment}</p>
