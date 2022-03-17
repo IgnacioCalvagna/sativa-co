@@ -13,6 +13,24 @@ exports.addCategoryProduct = (req, res) => {
     });
 };
 
+exports.addmanyRelations = (req, res) => {
+    const { productId, objCategoryId } = req.body;
+    const newcategoryIdsArr = [];
+    for (const categId in objCategoryId) {
+        if (objCategoryId[categId]) newcategoryIdsArr.push(categId);
+        // else removecategoryIdsArr.push(categId);
+      }
+    Product.findByPk(productId)
+      .then((product) => {
+        product.addCategorias(newcategoryIdsArr);
+      })
+      .then((result) => {
+        res.send(result);
+      });
+  };
+  
+
+
 exports.deleteRelation = (req, res) => {
   const { productId, categoryId } = req.body;
   Product.findByPk(productId)

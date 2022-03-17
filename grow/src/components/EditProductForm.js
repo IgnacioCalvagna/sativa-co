@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const EditProductForm = () => {
+  const navigate = useNavigate()
+
   const { id } = useParams();
   // const imagePath1 = useInput("");
   // const imagePath2 = useInput("");
@@ -66,6 +68,9 @@ const EditProductForm = () => {
     axios.put(`/api/product/${product.id}`, product)
     .then(()=>{
       return axios.put(`/api/category/updateRelation`, {productId: product.id, objCategoryId: checkedState})
+    })
+    .then(()=>{
+      navigate("/admin/products")
     })
   };
 
