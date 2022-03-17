@@ -1,13 +1,15 @@
-const { useParams } = require('react-router');
 const Role = require('../models/Role');
 const User = require('../models/User');
 
 exports.getAll = (req, res) => {
-  const { id } = useParams();
-  if (id === 2 || id === 3) {
+  const { id } = req.params;
+  console.log('soy el role del userrrr', id);
+
+  if (id === '2' || id === '3') {
     User.findAll().then(users => res.send(users));
   } else {
-    res.send(401);
+    console.log(id);
+    res.sendStatus(401);
   }
 };
 
@@ -56,14 +58,13 @@ exports.login = (req, res) => {
 };
 
 //Admin
-exports.adminCreate = (req, res) => {
-  const { id } = req.params;
+exports.adminPromote = (req, res) => {
+  const { id } = req.body;
+  console.log('soy el id del adminPromote funct', id);
   User.update(
-    { roleId: 4 },
+    { roleId: 2 },
     {
       where: { id },
-      returning: true,
-      plain: true,
     }
   ).then(result => {
     res.send(result);

@@ -18,13 +18,12 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    
     axios.get(`/api/user/getAll/${user.roleId}`).then(res => {
       setUsers(res.data);
     });
   }, []);
-  const handlePromote = () => {
-    // axios.
+  const handlePromote = id => {
+    axios.put(`/api/user/admin/adminPromote`, { id });
   };
 
   return (
@@ -76,7 +75,7 @@ const AdminUsers = () => {
                       disabled={
                         user.id ? parseInt(user.id) === parseInt(usr.id) : true
                       }
-                      onClick={handlePromote}
+                      onClick={() => handlePromote(usr.id)}
                     >
                       Promover
                     </button>
