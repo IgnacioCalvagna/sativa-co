@@ -1,8 +1,7 @@
-const { Model, DataTypes } = require("sequelize");
-const db = require("../db");
-const bcrypt = require("bcrypt");
+const { Model, DataTypes } = require('sequelize');
+const db = require('../db');
+const bcrypt = require('bcrypt');
 
- 
 /* interface UserAttributes{
     id: number,
     email: string,
@@ -32,8 +31,12 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   isEmail: true,
+      unique: true,
+      validate: {
+        isEmail: {
+          msg: 'Must be a valid email address',
+        },
+      },
     },
     password: {
       type: DataTypes.STRING,
@@ -44,17 +47,17 @@ User.init(
     },
   },
 
-  { sequelize: db, tableName: "users" }
+  { sequelize: db, tableName: 'users' }
 );
 
-User.addHook("beforeCreate", (user) => {
+User.addHook('beforeCreate', user => {
   return bcrypt
     .genSalt(16)
-    .then((salt) => {
+    .then(salt => {
       user.salt = salt;
       return user.setHash(user.password, salt);
     })
-    .then((hash) => {
+    .then(hash => {
       user.password = hash;
     });
 });

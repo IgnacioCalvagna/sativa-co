@@ -23,7 +23,11 @@ const AdminUsers = () => {
     });
   }, []);
   const handlePromote = id => {
-    axios.put(`/api/user/admin/adminPromote`, { id });
+    axios.put(`/api/user/admin/adminPromote`, { id }).then(() => {
+      axios.get(`/api/user/getAll/${user.roleId}`).then(res => {
+        setUsers(res.data);
+      });
+    });
   };
 
   return (
@@ -60,7 +64,7 @@ const AdminUsers = () => {
                 <td>{usr.lastname}</td>
                 <td>{usr.email}</td>
                 <td>
-                  {usr.role === 'admin' ? (
+                  {usr.roleId === 2 || usr.roleId === 3 ? (
                     <button
                       className='btn btn-danger'
                       disabled={

@@ -157,7 +157,9 @@ const SingleProduct = () => {
               </div>
               <button
                 className='btn btn-primary'
-                onClick={() => handleOnclick(product.id, quantity)}
+                onClick={() =>
+                  handleOnclick(product.id, quantity)
+                }
               >
                 Agregar a carrito
               </button>

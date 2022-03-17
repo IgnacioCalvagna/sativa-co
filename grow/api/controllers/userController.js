@@ -65,9 +65,12 @@ exports.adminPromote = (req, res) => {
     { roleId: 2 },
     {
       where: { id },
+      returning: true,
+      plain: true,
     }
   ).then(result => {
-    res.send(result);
+    console.log(result);
+    res.sendStatus(200);
   });
 };
 
