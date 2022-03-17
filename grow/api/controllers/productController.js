@@ -25,6 +25,23 @@ exports.add = (req, res) => {
   }).then(product => res.send(product));
 };
 
+exports.addValoration=(req, res)=>{
+  const {id}= req.params;
+
+  Product.update(req.body, {
+    where: {
+      id,
+    },
+    returning: true,
+    plain: true,
+  }).then(result => {
+    const valoracion = result[1];
+    res.status(201).json({
+      valoracion,
+    });
+  });
+}
+
 exports.update = (req, res) => {
   const { id } = req.params;
   Product.update(req.body, {
@@ -34,9 +51,9 @@ exports.update = (req, res) => {
     returning: true,
     plain: true,
   }).then(result => {
-    const user = result[1];
+    const product = result[1];
     res.status(201).json({
-      user,
+      product,
     });
   });
 };

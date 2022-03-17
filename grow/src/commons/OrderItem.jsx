@@ -1,5 +1,4 @@
 //sin usar
-import { Accordion, Button, Card, Jumbotron } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
@@ -7,33 +6,33 @@ import FakeOrderItems from "../utils/FakeOrderItems.js";
 
 import "../style/OrderHistorial.css";
 
-const OrderItem = ({ data }) => {
+const OrderItem = ({ data, id }) => {
   const datas2 = FakeOrderItems;
   return (
-    <div className="orderContainer">
+    <div className="">
       <Table bordered hover>
         <tbody>
-          <h2 class="accordion-header" id={data.id}>
+              <button className="btn btn-">Modificar</button>
+          <h2 class="accordion-header">
             <button
               class="accordion-button"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
+              data-bs-target={`#collapse${id}`}
               aria-expanded="true"
-              aria-controls="collapseOne"
+              aria-controls={`collapse${id}`}
             >
               <div classname="orderContainer3">
-                <div class="accordion" id={data.id}>
-                  <a></a>
-                  <a>Order N. {data.order_id} |</a>
-                  <a>| $.{data.payment_id} |</a>
-                  <a>| Date: {data.created_at}</a>
+                <div class="accordion">
+                  <span>Order N. {data.order_id} |</span>
+                  <span>| $.{data.payment_id} |</span>
+                  <span>| Date: {data.created_at}</span>
                 </div>
               </div>
             </button>
           </h2>
           <div
-            id="collapseOne"
+            id={`collapse${id}`}
             class="accordion-collapse collapse show"
             aria-labelledby="headingOne"
             data-bs-parent="#accordionExample"
@@ -42,7 +41,7 @@ const OrderItem = ({ data }) => {
               {datas2.map((data2, i) => (
                 <div className="orderContainer3">
                   <div className="">
-                    <img class="order-card-img" src={data2.images} />
+                    <img class="order-card-img" alt ="" src={data2.images} />
                     <Link to={`/product/${data2.product_id}`}>
                       {data2.name}
                     </Link>
@@ -63,6 +62,5 @@ const OrderItem = ({ data }) => {
 
 export default OrderItem;
 
-{
-  /* <img class="order-card-img" src={data.img} /> */
-}
+
+

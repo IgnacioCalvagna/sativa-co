@@ -14,10 +14,6 @@ Product.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     price: {
       type: DataTypes.DECIMAL,
       allowNull: false,
@@ -33,5 +29,10 @@ Product.init(
   },
   { sequelize: db, modelName: 'products' }
 );
+
+
+
+
+
 
 module.exports = Product;
