@@ -122,4 +122,16 @@
   width: 0;
 
 }
+.col-lg-7 {
+    display: flex;
+    flex: 0 0 auto;
+    width: 58.33333333%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.columnRight{
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+}
 
