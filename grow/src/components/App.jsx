@@ -20,6 +20,7 @@ import EditProductForm from './EditProductForm';
 import { getItemCart } from '../state/itemCart';
 import OrderHistorial from './OrderHistorial';
 import OrderDetail from './OrderDetail';
+import FilterSearch from './FilterSearch';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function App() {
             </>
           }
         />
+        <Route path='/products/popular' element={<FilterSearch />} />
         <Route path='/orders/history' element={<OrderHistorial />} />
         <Route path='/orders/item/:id' element={<OrderItem />} />
         <Route path='/order/detail/:id' element={<OrderDetail />} />

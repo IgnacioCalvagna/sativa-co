@@ -46,7 +46,7 @@ const Navbar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <Link to={`/products`}>
+                      <Link to={`/products/popular`}>
 
                         <a className="dropdown-item" href="#">
                           Productos Populares
