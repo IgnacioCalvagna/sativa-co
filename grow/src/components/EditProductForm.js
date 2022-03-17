@@ -31,16 +31,38 @@ const EditProductForm = () => {
       .get(`/api/product/${id}`)
       .then((res) => {
         setProduct(res.data);
-        return res.data.category;
       })
-      .then((returnedCateg) => {
-        let auxObj = {};
-        categorias.forEach((categ) => {
-          auxObj[categ] = categ === returnedCateg;
+      .then(() => {
+        return axios.get(`/api/category/productcategories/${id}`);
+      })
+      .then(({ data }) => {
+        setProductCategories(data);
+        axios.get("/api/category/getAll").then((res) => {
+          let everyCategory = res.data;
+          let otroObj = {};
+          // console.log(`todas las categorias`, everyCategory);
+          // console.log(`product category`, data);
+          everyCategory.forEach((categObj) => {
+            otroObj[categObj.id] = false;
+            data.forEach((el) => {
+              if (el.id == categObj.id) otroObj[el.id] = true;
+            });
+          });
+          // console.log(`el arrego magico es`, otroObj);
+          setCheckedState(otroObj)
         });
-        setCheckedState(auxObj);
-      });
+      })
   }, [id]);
+
+  useEffect(() => {
+    axios.get("/api/category/getAll").then(({ data }) => {
+      setAllCategories(data);
+    });
+  }, []);
+
+  const [allCategories, setAllCategories] = useState([]);
+
+  const [productCategories, setProductCategories] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +75,7 @@ const EditProductForm = () => {
     "Fertilizantes",
     "Sustratos",
     "Picadores",
-    "fungicida"
+    "fungicida",
   ];
 
   const handleOnChangeCheck = (categ) => {
@@ -62,10 +84,9 @@ const EditProductForm = () => {
     console.log(`categ es`, categ);
 
     for (const property in updatedCheckedState) {
-      console.log(`property es`, property)
-      property == categ
-        ? (updatedCheckedState[categ] = !updatedCheckedState[categ])
-        : (updatedCheckedState[categ] = updatedCheckedState[categ]);
+      console.log(`property es`, property);
+      if (property == categ)
+        updatedCheckedState[categ] = !updatedCheckedState[categ];
     }
     // const updatedCheckedState = checkedState.forin((item, index) =>
     //   index === position ?] !item : item
@@ -124,23 +145,24 @@ const EditProductForm = () => {
                 return ()
               } */}
 
-              {categorias.map((categ, index) => {
-                //ACA FALTA QUE PRODUCT.CATEGORY SEA UN ARRAY
+              {allCategories.map((categ, index) => {
+                // console.log(`categ es`, categ)
+                // console.log(`checked state dentro de map es`, checkedState)
                 return (
                   <div>
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      name={categ}
-                      value={categ}
-                      checked={checkedState[categ]}
-                      onChange={() => handleOnChangeCheck(categ)}
+                      name={categ.name}
+                      value={categ.id}
+                      checked={checkedState[categ.id]}
+                      onChange={() => handleOnChangeCheck(categ.name)}
                     />
                     <label
                       className="form-check-label"
                       htmlFor="flexCheckDefault"
                     >
-                      {categ}
+                      {categ.name}
                     </label>
                   </div>
                 );
@@ -183,7 +205,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img? product.img[0]: ''}
+              value={product.img ? product.img[0] : ""}
               onChange={handlePathChange}
               id="path0"
             />
@@ -192,7 +214,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img? product.img[1]: ''}
+              value={product.img ? product.img[1] : ""}
               onChange={handlePathChange}
               id="path1"
             />
@@ -201,7 +223,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img? product.img[2]: ''}
+              value={product.img ? product.img[2] : ""}
               onChange={handlePathChange}
               id="path2"
             />
@@ -210,7 +232,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img? product.img[3]: ''}
+              value={product.img ? product.img[3] : ""}
               onChange={handlePathChange}
               id="path3"
             />
