@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import useInput from "../hooks/useInput";
+import { useNavigate, useParams } from "react-router";
 
 const EditProductForm = () => {
+  const navigate = useNavigate()
+
   const { id } = useParams();
   // const imagePath1 = useInput("");
   // const imagePath2 = useInput("");
@@ -13,35 +14,80 @@ const EditProductForm = () => {
     id: "",
     name: "",
     description: "",
-    category: "",
     price: "",
     stock: "",
     img: ["", "", "", ""],
   });
 
-  const handlePathChange = (e)=>{
-    const otroObj = Object.assign({}, product)
-    otroObj.img[parseInt(e.target.id[e.target.id.length-1])]=e.target.value
-    setProduct(otroObj)
-  }
+  const [checkedState, setCheckedState] = useState({});
 
-  useEffect(() => {
-    axios.get(`/api/product/${id}`).then((res) => setProduct(res.data));
-  }, [id]);
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    axios.put(`/api/product/${product.id}`, product);
+  const handlePathChange = (e) => {
+    const otroObj = Object.assign({}, product);
+    otroObj.img[parseInt(e.target.id[e.target.id.length - 1])] = e.target.value;
+    setProduct(otroObj);
   };
 
-  const categorias = [
-    "Lámparas",
-    "Carpas",
-    "Fertilizantes",
-    "Sustratos",
-    "Picadores",
-  ];
+  useEffect(() => {
+    axios
+      .get(`/api/product/${id}`)
+      .then((res) => {
+        setProduct(res.data);
+      })
+      .then(() => {
+        return axios.get(`/api/category/productcategories/${id}`);
+      })
+      .then(({ data }) => {
+        // setProductCategories(data);
+        axios.get("/api/category/getAll").then((res) => {
+          let everyCategory = res.data;
+          let otroObj = {};
+          // console.log(`todas las categorias`, everyCategory);
+          // console.log(`product category`, data);
+          everyCategory.forEach((categObj) => {
+            otroObj[categObj.id] = false;
+            data.forEach((el) => {
+              if (el.id == categObj.id) otroObj[el.id] = true;
+            });
+          });
+          // console.log(`el arrego magico es`, otroObj);
+          setCheckedState(otroObj)
+        });
+      })
+  }, [id]);
+
+  useEffect(() => {
+    axios.get("/api/category/getAll").then(({ data }) => {
+      setAllCategories(data);
+    });
+  }, []);
+
+  const [allCategories, setAllCategories] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.put(`/api/product/${product.id}`, product)
+    .then(()=>{
+      return axios.put(`/api/category/updateRelation`, {productId: product.id, objCategoryId: checkedState})
+    })
+    .then(()=>{
+      navigate("/admin/products")
+    })
+  };
+
+  const handleOnChangeCheck = (categ) => {
+    const updatedCheckedState = { ...checkedState };
+    console.log(`updatedcheckstate es`, updatedCheckedState);
+    console.log(`categ es`, categ);
+
+    for (const property in updatedCheckedState) {
+      console.log(`property es`, property);
+      if (property == categ)
+        updatedCheckedState[categ] = !updatedCheckedState[categ];
+    }
+    console.log(`updatedcheckstate es`, updatedCheckedState);
+
+    setCheckedState(updatedCheckedState);
+  };
 
   return (
     <div className="container singleProductDiv">
@@ -87,27 +133,29 @@ const EditProductForm = () => {
              */}
 
             <div className="form-check">
-              {categorias.map((categ) => {
+              {/* {
+                let anotherCHeck = true
+                return ()
+              } */}
+
+              {allCategories.map((categ, index) => {
+                // console.log(`categ es`, categ)
+                // console.log(`checked state dentro de map es`, checkedState)
                 return (
                   <div>
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      value={categ}
-                      name={categ}
-                      checked={
-                        product.category
-                          ? product.category.indexOf(categ) !== -1
-                            ? true
-                            : false
-                          : false
-                      }
+                      name={categ.name}
+                      value={categ.id}
+                      checked={checkedState[categ.id]}
+                      onChange={() => handleOnChangeCheck(categ.id)}
                     />
                     <label
                       className="form-check-label"
                       htmlFor="flexCheckDefault"
                     >
-                      {categ}
+                      {categ.name}
                     </label>
                   </div>
                 );
@@ -150,7 +198,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[0]}
+              value={product.img ? product.img[0] : ""}
               onChange={handlePathChange}
               id="path0"
             />
@@ -159,7 +207,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[1]}
+              value={product.img ? product.img[1] : ""}
               onChange={handlePathChange}
               id="path1"
             />
@@ -168,7 +216,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[2]}
+              value={product.img ? product.img[2] : ""}
               onChange={handlePathChange}
               id="path2"
             />
@@ -177,7 +225,7 @@ const EditProductForm = () => {
               placeholder="https://path-to-img.png"
               name="images"
               className="imgProductInput"
-              value={product.img[3]}
+              value={product.img ? product.img[3] : ""}
               onChange={handlePathChange}
               id="path3"
             />

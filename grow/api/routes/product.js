@@ -10,4 +10,7 @@ router.delete("/:id", productController.delete);
 //// Productos I (categoria)
 router.get("/category/:category", productController.getByCategory);
 router.get("/name/:name",productController.getByName);
+
+
+router.put('/valoration/:id',productController.addValoration);
 module.exports = router;

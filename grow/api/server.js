@@ -73,7 +73,6 @@ passport.deserializeUser(function (id, done) {
     .catch(done);
 });
 
-
 app.use(function (err, req, res, next) {
   console.error(err);
   res.status(500).send(err);

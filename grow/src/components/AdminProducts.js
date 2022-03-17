@@ -58,7 +58,7 @@ const AdminProducts = () => {
       <Table bordered hover>
         <thead>
           <tr>
-            <th>Categoría</th>
+            <th>Imagen</th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Acción</th>
@@ -68,11 +68,11 @@ const AdminProducts = () => {
           {results.map(result => {
             return (
               <tr key={result.id}>
-                <td>{result.category}</td>
-                <td>{result.name}</td>
-                <td>{result.description}</td>
+                <td>{<img src={result.img[0]? result.img[0] : ""} style={{width: '100%', maxWidth: '100px'}}/>}</td>
+                <td><div className='celdaContent'>{result.name}</div></td>
+                <td><div className='celdaContent'>{result.description}</div></td>
                 <td>
-                  <div style={{ alignSelf: 'flex-end' }}>
+                <div className='celdaContent'>
                     <button className='btn btn-danger' onClick={handleShow}>
                       Eliminar
                     </button>

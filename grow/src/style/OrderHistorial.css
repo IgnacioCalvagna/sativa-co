@@ -12,16 +12,24 @@
     margin-top: 2px;
     margin-left: 35%;
     margin-right: 35%;
+    flex-direction: column;
 }
 
 .orderContainer2{
-    display: grid;
     margin: 20px;
-    justify-content: space-around;
 }
 .orderContainer3{
     display: flex;
     justify-content: space-between;
+}
+.orderContainer4{
+    display: flex;
+    /* max-width: 100%; */
+    border: 0.8px solid grey;
+    border-radius: 5px;
+    margin-top: 1%;
+    margin-left: 40%;
+    margin-right: 40%;
 }
 
 .order-text2{
@@ -45,6 +53,10 @@
   }
 
 .order-card-img{
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+}.order-card-img{
     width: 50px;
     height: 50px;
     margin: 15px;
