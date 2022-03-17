@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-
 import useInput from '../hooks/useInput';
 import '../style/Comments.css';
 

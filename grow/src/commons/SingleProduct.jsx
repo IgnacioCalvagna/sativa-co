@@ -1,10 +1,11 @@
-import './SingleProduct.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import { addOrCreateItemCart } from '../state/itemCart';
 import { useDispatch, useSelector } from 'react-redux';
 import Comments from '../components/Comments';
+import Valoration from './Valoration';
+import './SingleProduct.css';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -61,16 +62,16 @@ const SingleProduct = () => {
           <div className='row thumbnails-div col-4'>
             {product.img
               ? product.img.map((ruta, index) => {
-                  return (
-                    <img
-                      className='product-thumbnail'
-                      src={ruta}
-                      onClick={handleImageClick}
-                      alt='product'
-                      key={index}
-                    ></img>
-                  );
-                })
+                return (
+                  <img
+                    className='product-thumbnail'
+                    src={ruta}
+                    onClick={handleImageClick}
+                    alt='product'
+                    key={index}
+                  ></img>
+                );
+              })
               : null}
           </div>
           <div className='main-image col-8'>
@@ -111,6 +112,7 @@ const SingleProduct = () => {
         </div>
 
         <div className='col-lg-7'>
+        <div>
           <h1 className='text-start product-name'>{product.name}</h1>
           <div className='rating-div text-start'>
             <span className='rating-span'>
@@ -155,6 +157,9 @@ const SingleProduct = () => {
                   +
                 </button>
               </div>
+              </div>
+              <div className='columnRight'>
+                <Valoration/>
               <button
                 className='btn btn-primary'
                 onClick={() =>
@@ -163,9 +168,17 @@ const SingleProduct = () => {
               >
                 Agregar a carrito
               </button>
+              </div>
             </div>
           </div>
+          <div className="columnRight">
+            <Valoration/>
+            <button className='btn btn-primary'>Agregar a carrito</button>
+          </div>
         </div>
+
+
+
       </div>
       <Comments />
     </div>
