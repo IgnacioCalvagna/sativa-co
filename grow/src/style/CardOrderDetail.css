@@ -1,0 +1,15 @@
+.orderContainer2{
+    display: grid;
+    margin: 20px;
+    justify-content: space-around;
+}
+
+.orderContainer5{
+    display: flex;
+    min-width: 5px;
+
+}
+
+.text00001{
+    margin: 1%
+}

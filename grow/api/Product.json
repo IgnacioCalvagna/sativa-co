@@ -3,17 +3,17 @@
     {
       "name": "Picador",
       "description": "Para picar con comidad, facil de llevar",
-      "category": "Picadores",
       "price": 1500,
-
       "stock": 15,
-      "img": ["https://i.pinimg.com/736x/f4/95/52/f49552c63e353a6c2b73eada2f8f4671.jpg", "https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"]
+      "img": [
+        "https://i.pinimg.com/736x/f4/95/52/f49552c63e353a6c2b73eada2f8f4671.jpg",
+        "https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"
+      ]
     },
-
     {
       "name": "Macetas",
       "description": "Macetas de pvc reciclado en color verde",
-      "category": "Contenedores",
+      
       "price": 2500,
       "stock": 120,
       "img": ["https://http2.mlstatic.com/D_NQ_NP_2X_662853-MLA41563291270_042020-F.webp"]
@@ -22,7 +22,7 @@
     {
       "name": "Fertilizantes ",
       "description": "Melaza enrriquesida ",
-      "category": "Fertilizantes",
+      
       "price": 2000,
       "stock": 158,
       "img":["https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nuevohanasono.com.ar%2Fproductos%2Fmelaza-enriquecida-fertilizante-organico-ecomambo%2F&psig=AOvVaw3I90MjAA_NGW-UKLSQLxPd&ust=1647623808974000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOiH0pDTzfYCFQAAAAAdAAAAABAG"]
@@ -31,7 +31,7 @@
     {
       "name": "Tijera Manicura",
       "description": "Para mantener tus plantas en el estado optimo de produccion",
-      "category": "Tijeeras de poda",
+      
       "price": 2500,
       "stock": 56,
       "img":["http://d3ugyf2ht6aenh.cloudfront.net/stores/001/425/734/products/14771-df4e222970db247de516100469308959-640-0.jpg"]
@@ -40,7 +40,7 @@
     {
       "name": "Lamparas LED",
       "description": "No te da el sol, no importa, aca la solucion ",
-      "category": "Lamparas indoor",
+  
       "price": 2500,
       "stock": 23
       
@@ -49,7 +49,7 @@
     {
       "name": "Bongs",
       "description": "Bong de vidrio para mejorar tu experiencia 100% ",
-      "category": "Pipas y bongs",
+  
       "price": 2500,
       "stock": 5
     },
@@ -57,7 +57,7 @@
     {
       "name": "Carpa indoor",
       "description": "Para mejorar tu cultivo en interior logrando el microclima perfecto para tu planta",
-      "category": "Carpas indoor",
+    
       "price":10000,
       "stock": 15
     },
@@ -65,37 +65,46 @@
     {
         "name": "Vaporizador",
         "description": "Vaporizador Da Vinci, lograras una experincia extraordinaria y saludable a la hora de fumar",
-        "category": "Vaporizadores",
+       
         "price": 41000,
         "stock": 2
       },
       {
         "name": "Fungicida",
         "description": "Controla los hongos en tus plantas mejorando la produccion, con productos organicos.",
-        "category": "Sanidad",
+       
         "price":750,
         "stock": 25
       },
       {
         "name": "Insecticida",
         "description": "Controla las plagas en tus plantas no dejes que afecten la produccion",
-        "category": "Sanidad",
+        
         "price":789,
         "stock": 25
       },
       {
         "name": "Papelillo",
         "description": "Fino papel de seda de conbustion lenta",
-        "category": "Seda",
+        
         "price":150,
         "stock": 20
       },
       {
         "name": "Papelillo de celulosa",
         "description": "Celulosa de combustion super lenta",
-        "category": "seda",
         "price":250,
         "stock": 20
-      }
+      },
+    {
+      "name": "Bong",
+      "description": "Bong bong bong",
+      "price": 2100,
+      "stock": 26,
+      "img": [
+        "https://i.pinimg.com/736x/f4/95/52/f49552c63e353a6c2b73eada2f8f4671.jpg",
+        "https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"
+        }
+
   ]
 }

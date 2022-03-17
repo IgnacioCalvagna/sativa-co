@@ -1,5 +1,6 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+
 const nodemailer = require("nodemailer");
 const {OrderDetail, CartItem  }= require("../models")
 const etherealEmailController = require("../controllers/orderDetailController");
@@ -24,16 +25,17 @@ router.put('/modifyStatus/:id',(req, res) => {
       res.status(201).json({
         user,
       });
+
     });
-})
+  });
+});
 
-router.get('/historial/:UserId',(req, res) => {
-    const {UserId} = req.params
-    OrderDetail.findAll({where:{UserId}}).then(orders => res.send(orders))
-})
+router.get('/historial/:UserId', (req, res) => {
+  const { UserId } = req.params;
+  OrderDetail.findAll({ where: { UserId } }).then(orders => res.send(orders));
+});
 
-
-///  contraseña de aplicacion para google : 
+///  contraseña de aplicacion para google :
 /// juev vuxd mobn xisi
 router.post("/sendEmail", (req, res) => {
     const transporter = nodemailer.createTransport({
