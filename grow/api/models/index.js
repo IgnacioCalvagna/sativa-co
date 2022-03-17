@@ -8,6 +8,11 @@ const Product = require('./Product');
 const ShoppingCart = require('./ShoppingCart');
 const User = require('./User');
 const Role = require('./Role');
+const ProductComment = require('./ProductComment');
+
+
+ProductComment.belongsTo(Product);
+
 
 ShoppingCart.belongsTo(User);
 User.hasOne(ShoppingCart);
@@ -32,6 +37,7 @@ OrderDetail.hasMany(OrderItem);
 OrderDetail.belongsTo(User);
 User.hasMany(OrderDetail);
 
+
 PaymentDetail.belongsTo(OrderDetail);
 
 module.exports = {
@@ -44,4 +50,5 @@ module.exports = {
   OrderItem,
   PaymentDetail,
   ShoppingCart,
+  ProductComment,
 };

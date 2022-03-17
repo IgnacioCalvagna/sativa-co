@@ -10,4 +10,11 @@ router.post('/add',(req, res)=>{
 
 
 
+
+router.get('/getAll/:id',(req, res)=>{
+    const{id} = req.params;
+    OrderItem.findAll({where:{orderdetailId:id}})
+    .then(data => res.send(data)); 
+});
+
 module.exports = router ;

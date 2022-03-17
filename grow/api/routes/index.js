@@ -8,7 +8,7 @@ const orderItem = require('./orderItem');
 
 const shoppingCart = require('./shoppingCart')
 const itemCart = require('./itemCart')
-
+const productComment = require('./productComment')
 
 
 router.use('/user', user)
@@ -18,8 +18,8 @@ router.use('/orderDetail', orderDetail)
 router.use('/orderItem', orderItem)
 
 router.use('/shoppingCart', shoppingCart);
-router.use('/itemCart', itemCart)
-
+router.use('/itemCart', itemCart); 
+router.use('/productComment', productComment);
 
 
 

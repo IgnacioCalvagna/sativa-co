@@ -15,7 +15,8 @@
       "description": "Macetas de pvc reciclado en color verde",
       "category": "Contenedores",
       "price": 2500,
-      "stock": 120
+      "stock": 120,
+      "img": ["https://http2.mlstatic.com/D_NQ_NP_2X_662853-MLA41563291270_042020-F.webp"]
     },
 
     {
@@ -31,7 +32,8 @@
       "description": "Para mantener tus plantas en el estado optimo de produccion",
       "category": "Tijeeras de poda",
       "price": 2500,
-      "stock": 56
+      "stock": 56,
+      "img":["http://d3ugyf2ht6aenh.cloudfront.net/stores/001/425/734/products/14771-df4e222970db247de516100469308959-640-0.jpg"]
     },
 
     {
@@ -40,6 +42,7 @@
       "category": "Lamparas indoor",
       "price": 2500,
       "stock": 23
+      
     },
 
     {

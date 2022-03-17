@@ -30,6 +30,10 @@ Product.init(
       type: DataTypes.ARRAY(DataTypes.STRING),
 
     },
+    valoracion: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      allowNull: true,
+    },
   },
   { sequelize: db, modelName: 'products' }
 );

@@ -2,12 +2,7 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const {OrderDetail, CartItem  }= require("../models")
-
 const etherealEmailController = require("../controllers/orderDetailController");
-
-
-
-
 
 router.post("/createOrderDetail",(req, res) => {
     const {UserId, total} = req.body
@@ -46,12 +41,9 @@ router.post("/sendEmail", (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        type: "OAuth2",
         user: "sativayco@gmail.com",
-        pass: "ljuev vuxd mobn xisi"
-        // serviceClient:"111670647262753625207",
-      },
-      
+        pass: "juevvuxdmobnxisi"
+      },      
     });
     const emailConfig={
         from:"sativayco@gmail.com",
@@ -68,7 +60,5 @@ router.post("/sendEmail", (req, res) => {
              res.status(200).json(emailConfig);
           }
     })
-
 })
-
 module.exports = router;
