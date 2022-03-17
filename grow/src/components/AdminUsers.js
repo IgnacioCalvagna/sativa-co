@@ -1,65 +1,36 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import useInput from "../hooks/useInput";
-import "../style/AdminUsers.css";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import useInput from '../hooks/useInput';
+import '../style/AdminUsers.css';
+import { useNavigate } from 'react-router';
 
 //FALTA: - Considerar que un admin no puede autorrevocarse un permiso.
 
 const AdminUsers = () => {
-  
-  const searchValue = useInput("");
+  const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user);
+  const searchValue = useInput('');
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (searchValue.value !== "") {
-  //   }
-  // };
-  console.log(`user id afuera del useeffect es`, user.id);
+  const user = useSelector(state => state.user);
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get(`/api/user`).then((res) => {
+    
+    axios.get(`/api/user/getAll/${user.roleId}`).then(res => {
       setUsers(res.data);
     });
   }, []);
-
-  //   useEffect(() => {
-  //     if(user.id&&users[0]) {
-  //  console.log(`user id es`, user.id);
-  //     console.log(`USERS son`, users);
-  //     const filteredUsers = users.filter((el) => el.id !== user.id);
-  //     setUsers(filteredUsers)
-  //     }
-
-  //   }, []);
-
-  const usersArr = [
-    {
-      name: "pika",
-      lastname: "chu",
-      email: "pika@chu.com",
-      role: "admin",
-    },
-    {
-      name: "char",
-      lastname: "mander",
-      email: "char@mander.com",
-      role: "user",
-    },
-  ];
-
   const handlePromote = () => {
     // axios.
-  }
+  };
 
   return (
-    <div className="container usersTitleDiv">
+    <div className='container usersTitleDiv'>
       <h1>Users</h1>
-      <div className="searchFormDiv">
+      <div className='searchFormDiv'>
         {/* <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="searchUsersInput">Buscador de usuarios </label>
           <input
@@ -90,17 +61,21 @@ const AdminUsers = () => {
                 <td>{usr.lastname}</td>
                 <td>{usr.email}</td>
                 <td>
-                  {usr.role === "admin" ? (
+                  {usr.role === 'admin' ? (
                     <button
-                      className="btn btn-danger"
-                      disabled={user.id ? parseInt(user.id) === parseInt(usr.id) : true}
+                      className='btn btn-danger'
+                      disabled={
+                        user.id ? parseInt(user.id) === parseInt(usr.id) : true
+                      }
                     >
                       Remover
                     </button>
                   ) : (
                     <button
-                      className="btn btn-success"
-                      disabled={user.id ? parseInt(user.id) === parseInt(usr.id) : true}
+                      className='btn btn-success'
+                      disabled={
+                        user.id ? parseInt(user.id) === parseInt(usr.id) : true
+                      }
                       onClick={handlePromote}
                     >
                       Promover
