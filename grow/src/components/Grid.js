@@ -2,18 +2,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from '../commons/Card';
 
-const Grid = props => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.get('/api/product/').then(res => setProducts(res.data));
-  }, []);
-
+const Grid = ({products}) => {
+ 
   return (
     <div className='container d-flex justify-content-center mt-50 mb-50'>
-      <div className='row'>
+      <div className='row' style={{minWidth: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
           {products.map((data, i) => (
-            <div className='col-md-4 mt-2' key={i}>
+            <div className='col-lg-3 ' key={i}>
               <Card data={data} />
             </div>
           ))}

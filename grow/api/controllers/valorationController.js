@@ -1,15 +1,18 @@
-const {ProductValoration}= require("../models/ProductValoration");
+const ProductValoration= require("../models/ProductValoration");
 
 
-exports.addComment=(req, res) => {
-    const {userId,productId,userName,comment} = req.body
-    ProductComment.create({userId,productId,userName,comment})
-    .then(newComment => res.send(newComment)); 
+exports.add=(req, res) => {
+  const {productId} = req.params
+    const {userId,valoration} = req.body
+    // console.log("USER",userId)
+    // console.log("PRODUCTO ",productId)
+    ProductValoration.create({userId,valoration,productId})
+    .then(newValoration => res.send(newValoration)); 
   };
 
-exports.getAllComments=(req, res) => {
+exports.getAll=(req, res) => {
     const {productId} =req.params
-    ProductComment.findAll({where:{productId}})
-    .then(comments => res.send(comments));
+    ProductValoration.findAll({where:{productId}})
+    .then(result => res.send(result));
 }
 

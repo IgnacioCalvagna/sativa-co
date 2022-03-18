@@ -14,10 +14,6 @@ ProductValoration.init(
             type: DataTypes.INTEGER,
             
         },
-        userName:{
-            type: DataTypes.STRING,
-            
-         }
     },
     {
         sequelize: db,

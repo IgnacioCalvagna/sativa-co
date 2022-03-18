@@ -1,26 +1,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
 
 const NewProductForm = () => {
-
-  const navigate = useNavigate()
-  const [allCategories, setAllCategories] = useState([])
+  const navigate = useNavigate();
+  const [allCategories, setAllCategories] = useState([]);
   const [checkedState, setCheckedState] = useState({});
 
   useEffect(() => {
-    axios.get("/api/category/getAll").then(({ data }) => {
-      setAllCategories(data);
-      return data
-    }).then(categories=>{
-      let auxObj = {}
-      categories.forEach(categObj => {
-        auxObj[categObj.id] = false
+    axios
+      .get("/api/category/getAll")
+      .then(({ data }) => {
+        setAllCategories(data);
+        return data;
       })
-      console.log(`auxobj es`, auxObj)
-      setCheckedState(auxObj)
-    })
+      .then((categories) => {
+        let auxObj = {};
+        categories.forEach((categObj) => {
+          auxObj[categObj.id] = false;
+        });
+        console.log(`auxobj es`, auxObj);
+        setCheckedState(auxObj);
+      });
   }, []);
 
   const categorias = ["Lámparas", "Carpas", "Fertilizantes", "Sustratos"];
@@ -48,24 +51,28 @@ const NewProductForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    axios.post("/api/product/add", {
-      name: name.value,
-      description: description.value,
-      category: 'lampara', //ARREGLAR ESTE DATO
-      price: price.value,
-      stock: stock.value,
-      img: [
-        imagePath1.value,
-        imagePath2.value,
-        imagePath3.value,
-        imagePath4.value,
-      ],
-    }).then((res)=>{
-      const productId = res.data[0].id
-      axios.post("/api/category/addmanyRelations", {productId, objCategoryId: checkedState})
-    })
-    .then(()=>navigate("/admin/products"))
+    e.preventDefault();
+    axios
+      .post("/api/product/add", {
+        name: name.value,
+        description: description.value,
+        price: price.value,
+        stock: stock.value,
+        img: [
+          imagePath1.value,
+          imagePath2.value,
+          imagePath3.value,
+          imagePath4.value,
+        ],
+      })
+      .then((res) => {
+        const productId = res.data[0].id;
+        axios.post("/api/category/addmanyRelations", {
+          productId,
+          objCategoryId: checkedState,
+        });
+      })
+      .then(() => navigate("/admin/products"));
   };
 
   const handleOnChangeCheck = (categ) => {
@@ -86,8 +93,16 @@ const NewProductForm = () => {
   return (
     <div className="container singleProductDiv">
       <h1 className="text-center product-name ">CREAR PRODUCTO</h1>
-      <div className="row" style={{ justifyContent: "center" }}>
-        <form className="col-lg-7" onSubmit={handleSubmit}>
+      <div className="d-flex" style={{ justifyContent: "center" }}>
+        <form
+          className="col-lg-7"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+          onSubmit={handleSubmit}
+        >
           <div className="d-flex flex-column labelAndInput">
             <label htmlFor="name">Nombre:</label>
             <input
@@ -145,8 +160,12 @@ const NewProductForm = () => {
               })}
             </div>
             <div style={{ alignSelf: "flex-end" }}>
-              <button className="btn btn-light">Editar categorías</button>
-              <button className="btn btn-dark">Nueva categoría</button>
+              <Link to="/admin/categories">
+                <button className="btn btn-light">Editar categorías</button>
+              </Link>
+              <Link to="/admin/categories/new-category">
+                <button className="btn btn-dark">Nueva categoría</button>
+              </Link>{" "}
             </div>
           </div>
           <div className="d-flex flex-column labelAndInput">
@@ -214,7 +233,11 @@ const NewProductForm = () => {
 
           <div>
             <div className="d-flex flex-row-reverse">
-              <button className="btn btn-primary" type="submit">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                style={{ marginRight: "0px" }}
+              >
                 Crear producto
               </button>
             </div>

@@ -7,9 +7,17 @@ export const addOrCreateItemCart = createAsyncThunk(
     const { shoppingCart } = thunkAPI.getState();
     if (shoppingCart.id) {
       return axios.post(`/api/itemCart`, data).then(() => {
-        return axios
-          .get(`/api/itemCart/${shoppingCart.id}`)
-          .then(res => res.data);
+        return axios.get(`/api/itemCart/${shoppingCart.id}`).then(res => {
+          const items = res.data;
+          const total = parseInt(
+            items
+              .map(({ quantity, product }) => quantity * product.price)
+              .reduce((total, i) => total + i, 0)
+          );
+          return axios
+            .put(`/api/shoppingCart/total`, { id: shoppingCart.id, total })
+            .then(() => res.data);
+        });
       });
     }
   }
@@ -20,9 +28,17 @@ export const deleteItemCart = createAsyncThunk(
     const { shoppingCart } = thunkAPI.getState();
     if (shoppingCart.id) {
       return axios.delete(`/api/itemCart/remove/${id}`).then(() => {
-        return axios
-          .get(`/api/itemCart/${shoppingCart.id}`)
-          .then(res => res.data);
+        return axios.get(`/api/itemCart/${shoppingCart.id}`).then(res => {
+          const items = res.data;
+          const total = parseInt(
+            items
+              .map(({ quantity, product }) => quantity * product.price)
+              .reduce((total, i) => total + i, 0)
+          );
+          return axios
+            .put(`/api/shoppingCart/total`, { id: shoppingCart.id, total })
+            .then(() => res.data);
+        });
       });
     }
   }

@@ -1,3 +1,5 @@
+const orderDetailController = require('../controllers/orderDetailController');
+
 const express = require('express');
 const router = express.Router();
 
@@ -5,33 +7,13 @@ const nodemailer = require('nodemailer');
 const { OrderDetail, CartItem } = require('../models');
 const etherealEmailController = require('../controllers/orderDetailController');
 
-router.post('/createOrderDetail', (req, res) => {
-  const { UserId, total } = req.body;
-  console.log('MIREQ.BODY', req.body);
-  OrderDetail.create({ UserId, total }).then(newOrderDetail => {
-    res.send(newOrderDetail);
-  });
-});
-router.put('/modifyStatus/:id', (req, res) => {
-  const { id } = req.params;
-  OrderDetail.update(req.body, {
-    where: {
-      id,
-    },
-    returning: true,
-    plain: true,
-  }).then(result => {
-    const user = result[1];
-    res.status(201).json({
-      user,
-    });
-  });
-});
+router.post('/createOrderDetail', orderDetailController.add);
 
-router.get('/historial/:UserId', (req, res) => {
-  const { UserId } = req.params;
-  OrderDetail.findAll({ where: { UserId } }).then(orders => res.send(orders));
-});
+router.put('/modifyStatus/:id', orderDetailController.update);
+
+router.get('/historial/:UserId', orderDetailController.getAll);
+
+router.get('/getorder/:id', orderDetailController.getOne)
 
 ///  contraseña de aplicacion para google :
 /// juev vuxd mobn xisi

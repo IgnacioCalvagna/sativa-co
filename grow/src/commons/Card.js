@@ -1,10 +1,7 @@
 import '../style/Grid.css';
 import { Link } from 'react-router-dom';
 
-
 const Card = ({ data }) => {
-  
-
   return (
     <div className='card'>
       <div className='card-body'>
@@ -25,10 +22,7 @@ const Card = ({ data }) => {
         <div className='container-grid'>
           <Link to={`/product/${data.id}`}>
             <div>
-              <button
-                type='button'
-                className='buttonItem'
-              >
+              <button type='button' className='buttonItem'>
                 Ver detalles
               </button>
             </div>
