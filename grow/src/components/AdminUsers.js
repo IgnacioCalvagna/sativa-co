@@ -32,9 +32,9 @@ const AdminUsers = () => {
 
   return (
     <div className='container usersTitleDiv'>
-      <h1>Users</h1>
-      <div className='searchFormDiv'>
-        {/* <form onSubmit={(e) => e.preventDefault()}>
+      <h1 style={{paddingBottom: '40px'}}>Users</h1>
+      {/* <div className='searchFormDiv'>
+        <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="searchUsersInput">Buscador de usuarios </label>
           <input
             type="text"
@@ -45,8 +45,8 @@ const AdminUsers = () => {
             {...searchValue}
           />
           <button className="btn btn-primary searchFormBtn">Buscar</button>
-        </form> */}
-      </div>
+        </form>
+      </div> */}
       <Table bordered hover>
         <thead>
           <tr>

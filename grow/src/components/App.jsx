@@ -21,7 +21,13 @@ import OrderHistorial from './OrderHistorial';
 import CartDetails from './CartDetails';
 import FilterSearch from './FilterSearch';
 import NotFound from './NotFound';
+
+import AdminCategories from './AdminCategories';
+import NewCategForm from './NewCategForm';
+import EditCategForm from './EditCategForm';
+
 import OrderDetails from './OrderDetail';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -38,16 +44,13 @@ function App() {
 
   const [products, setProducts] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get('/api/products')
-  //     .then(res => res.data)
-  //     .then(products => setProducts(products.items));
-  // }, []);
+  useEffect(() => {
+    axios.get('/api/product/').then(res => setProducts(res.data));
+  }, []);
 
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar setProducts={setProducts}/>
       {/* <div className="container"> */}
       <Routes>
         <Route
@@ -56,12 +59,12 @@ function App() {
             <>
               <CarouselComponent />
               <div className='container'>
-                <Grid />
+                <Grid products={products}/>
               </div>
             </>
           }
         />
-        <Route path='/products/popular' element={<FilterSearch />} />
+        <Route path='/products/popular' element={<FilterSearch products={products}/>} />
         <Route path='/orders/history' element={<OrderHistorial />} />
         <Route path='/CartDetails' element={<CartDetails />} />
         <Route path='/orderDetails/:id' element={<OrderDetails />} />
@@ -79,6 +82,15 @@ function App() {
             <Route
               path='/admin/products/edit/:id'
               element={<EditProductForm />}
+            />
+            <Route path='/admin/categories' element={<AdminCategories/>}/>
+            <Route
+              path='/admin/categories/new-category'
+              element={<NewCategForm />}
+            />
+            <Route
+              path='/admin/categories/edit/:id'
+              element={<EditCategForm />}
             />
           </>
         ) : null}
