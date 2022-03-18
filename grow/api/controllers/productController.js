@@ -25,8 +25,8 @@ exports.add = (req, res) => {
   }).then(product => res.send(product));
 };
 
-exports.addValoration=(req, res)=>{
-  const {id}= req.params;
+exports.addValoration = (req, res) => {
+  const { id } = req.params;
 
   Product.update(req.body, {
     where: {
@@ -40,7 +40,7 @@ exports.addValoration=(req, res)=>{
       valoracion,
     });
   });
-}
+};
 
 exports.update = (req, res) => {
   const { id } = req.params;
@@ -62,16 +62,20 @@ exports.delete = (req, res) => {
   const { id } = req.params;
 
   Product.destroy({ where: { id } }).then(data => res.sendStatus(202));
-
 };
 
 //// Productos I (categoria)
 
 exports.getByCategory = (req, res) => {
-  const { category } = req.params;
-  console.log(category);
+  const { id } = req.params;
 
-  Product.findAll({ where: { category } }).then(products => res.send(products));
+  Category.findByPk(id)
+    .then(category => {
+      return category.getProductos();
+    })
+    .then(data => {
+      res.send(data);
+    });
 };
 
 exports.getByName = (req, res) => {

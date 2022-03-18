@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { addOrCreateItemCart, deleteItemCart } from '../state/itemCart';
 import '../style/Sidebar.css';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [items, setItems] = useState([]);
 
   const cartItems = useSelector(state => state.itemCarts);
 
   useEffect(() => setItems(cartItems), [cartItems]);
+
 
   const suma = (product, quantity, ShoppingCartId) => {
     if (quantity >= product.stock) return;
@@ -34,6 +37,10 @@ const Cart = () => {
 
   const handleDelete = id => {
     dispatch(deleteItemCart(id));
+  };
+
+  const handleOnCheckout = () => {
+    navigate('./CartDetails');
   };
 
   return (
@@ -111,7 +118,12 @@ const Cart = () => {
                   .reduce((total, i) => total + i, 0) / 6
               ).toFixed(2)}
             </div>
-            <button className='buttonQuantity starting'>Iniciar compra</button>
+            <button
+              className='buttonQuantity starting'
+              onClick={handleOnCheckout}
+            >
+              Iniciar compra
+            </button>
           </div>
         </div>
       </div>
