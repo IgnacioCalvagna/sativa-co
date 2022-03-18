@@ -5,11 +5,16 @@ import '../../style/OrderHistorial.css';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const OrderItems = () => {
   const navigate = useNavigate();
 
+  const user = useSelector(state => state.user);
+
   const handleBuy = () => {
+    axios.post(`/api/orderDetail/sendEmail`, { email: user.email });
+
     navigate('/');
   };
 

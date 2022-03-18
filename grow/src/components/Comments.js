@@ -5,15 +5,13 @@ import { useSelector } from 'react-redux';
 import useInput from '../hooks/useInput';
 import '../style/Comments.css';
 
-const Comments = () => {
+const Comments = ({ lengthComment }) => {
   const { id } = useParams();
   const [comments, setComments] = useState([]);
   const comment = useInput('');
   const user = useSelector(state => state.user);
   useEffect(() => {
     axios.get(`/api/productComment/${id}`).then(res => {
-      console.log('SOY EL RES------------>', res);
-
       if (res.data) setComments(res);
     });
   }, []);
@@ -29,7 +27,12 @@ const Comments = () => {
           productId: id,
         })
         .then(() => {
-          axios.get(`/api/productComment/${id}`).then(res => setComments(res));
+          document.querySelector('.formComments').value = '';
+          comment.onChange(e);
+          axios.get(`/api/productComment/${id}`).then(res => {
+            lengthComment(res.data.length);
+            setComments(res);
+          });
         });
     }
   };
