@@ -12,7 +12,7 @@ router.post('/createRole', userController.createRole);
 router.get('/getAll/:id', userController.getAll);
 //Admin
 router.put('/admin/adminPromote', userController.adminPromote);
-router.delete('/suprAdmin/:id', userController.suprAdmin);
+router.put('/admin/suprAdmin', userController.suprAdmin);
 router.get('/allAdmin', userController.allAdmin);
 
 module.exports = router;

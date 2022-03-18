@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 const EditProductForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { id } = useParams();
   // const imagePath1 = useInput("");
@@ -50,9 +51,9 @@ const EditProductForm = () => {
             });
           });
           // console.log(`el arrego magico es`, otroObj);
-          setCheckedState(otroObj)
+          setCheckedState(otroObj);
         });
-      })
+      });
   }, [id]);
 
   useEffect(() => {
@@ -65,13 +66,17 @@ const EditProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`/api/product/${product.id}`, product)
-    .then(()=>{
-      return axios.put(`/api/category/updateRelation`, {productId: product.id, objCategoryId: checkedState})
-    })
-    .then(()=>{
-      navigate("/admin/products")
-    })
+    axios
+      .put(`/api/product/${product.id}`, product)
+      .then(() => {
+        return axios.put(`/api/category/updateRelation`, {
+          productId: product.id,
+          objCategoryId: checkedState,
+        });
+      })
+      .then(() => {
+        navigate("/admin/products");
+      });
   };
 
   const handleOnChangeCheck = (categ) => {
@@ -92,8 +97,16 @@ const EditProductForm = () => {
   return (
     <div className="container singleProductDiv">
       <h1 className="text-center product-name ">EDITAR PRODUCTO</h1>
-      <div className="row" style={{ justifyContent: "center" }}>
-        <form className="col-lg-7" onSubmit={handleSubmit}>
+      <div className="d-flex" style={{ justifyContent: "center" }}>
+        <form
+          className="col-lg-7"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+          onSubmit={handleSubmit}
+        >
           <div className="d-flex flex-column labelAndInput">
             <label htmlFor="name">Nombre:</label>
             <input
@@ -162,8 +175,12 @@ const EditProductForm = () => {
               })}
             </div>
             <div style={{ alignSelf: "flex-end" }}>
-              <button className="btn btn-light">Editar categorías</button>
+              <Link to="/admin/categories">
+                <button className="btn btn-light">Editar categorías</button>
+              </Link>
+              <Link to="/admin/categories/new-category">
               <button className="btn btn-dark">Nueva categoría</button>
+              </Link>
             </div>
           </div>
           <div className="d-flex flex-column labelAndInput">
@@ -244,7 +261,11 @@ const EditProductForm = () => {
 
           <div>
             <div className="d-flex flex-row-reverse">
-              <button className="btn btn-primary" type="submit">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                style={{ marginRight: "0px" }}
+              >
                 Editar producto
               </button>
             </div>

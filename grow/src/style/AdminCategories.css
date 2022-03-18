@@ -1,0 +1,16 @@
+.categoriesDiv {
+    padding-top: 60px;
+    text-align: center;
+    flex: 1;
+}
+
+.categoriesTitle{
+    padding-bottom: 40px;
+}
+
+.categoriesCelda {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

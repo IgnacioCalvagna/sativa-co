@@ -3,7 +3,7 @@
 // import { useParams } from "react-router";
 // import { Link } from "react-router-dom";
 import FakeOrders from "../utils/FakeOrders.js";
-import OrderItem from "../commons/OrderItem"
+import OrderItemHistory from "../commons/OrderItemHistory"
 
 import "../style/OrderHistorial.css";
 
@@ -17,7 +17,7 @@ const OrderHistorial = () => {
               <div className="orderContainer">
 
               {datas.map((data, i) => (
-                  <OrderItem data={data} key={i} id={i}/>
+                  <OrderItemHistory data={data} key={i} id={i}/>
               ))}
             </div>
     </div>

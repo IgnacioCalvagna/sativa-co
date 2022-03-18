@@ -1,9 +1,41 @@
 import { Accordion } from "react-bootstrap";
 import Grid from "./Grid";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import "../style/FilterSearch.css";
 
-const FilterSearch = () => {
+const FilterSearch = ({  }) => {
+  const [allCategories, setAllCategories] = useState([]);
+  const [checkedState, setCheckedState] = useState("");
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    axios
+      .get("/api/category/getAll")
+      .then(({ data }) => {
+        setAllCategories(data);
+        console.log(`categories es`, data);
+        return data;
+      })
+ 
+  }, []);
+
+  const handleOnChangeCheck = (e) => {
+ 
+    console.log(`event taget value es`, e.target.value)
+    let categId = e.target.value
+    
+    axios.get(`/api/product/category/${categId}`).then(res=>setProducts(res.data))
+
+    setCheckedState(e.target.value)
+    console.log(checkedState)
+  };
+
+  useEffect(() => {
+    axios.get('/api/product/').then(res => setProducts(res.data));
+  }, []);
+
   return (
     <div className="filterContainer1">
       <div className="filterAccordion">
@@ -11,10 +43,24 @@ const FilterSearch = () => {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Category</Accordion.Header>
             <Accordion.Body>
-                <div>
-                <input type="checkbox" />{" "}
-                <label style={{marginLeft:"6px"}}>Macetas</label>
-              </div>
+            <form>
+              {allCategories.map((category) => {
+                return (
+                  <div>
+                    <input
+                      type="radio"
+                      name={category.name}
+                      value={category.id}
+                      checked={checkedState==category.id}
+                      id={category.name}
+                      // checked={checkedState[category.id]}
+                      onChange={handleOnChangeCheck}
+                    />
+                    <label style={{ marginLeft: "6px" }}>{category.name}</label>
+                  </div>
+                );
+              })}
+              </form>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
@@ -22,15 +68,15 @@ const FilterSearch = () => {
       <div>
         <div className="pagination">
           <span>
-            {} Result(s) found for {}
+            {products.length} Result(s) found
           </span>
-          <div>
+          {/* <div>
             <button>1</button>
             <button>2</button>
             <button>3</button>
-          </div>
+          </div> */}
         </div>
-        <Grid />
+        <Grid products={products} />
       </div>
     </div>
   );

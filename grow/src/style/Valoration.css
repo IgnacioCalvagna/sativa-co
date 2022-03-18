@@ -1,17 +1,24 @@
 .starts{
     padding: 5px;
-    width: 250px;
+    /* width: 250px; */
     height: 60px;
     transition: transform 0.3s;
     display: flex;
     background-color: white;
+    padding-left: 50px;
 }
+
+.starts > * {
+    background-color: white;
+}
+
 .start1{
     font-size:26px;
     border:none;
     color:rgb(235, 235, 21);
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start2{
     font-size:26px;
@@ -19,6 +26,7 @@
     color:rgb(235, 235, 21);
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start3{
     font-size:26px;
@@ -26,6 +34,7 @@
     color:rgb(235, 235, 21);
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start4{
     font-size:26px;
@@ -33,6 +42,7 @@
     color:rgb(235, 235, 21);
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start5{
     font-size:26px;
@@ -41,6 +51,7 @@
     padding:1%;
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 
 .start11{
@@ -50,6 +61,7 @@
     padding:1%;
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start22{
     font-size:26px;
@@ -58,6 +70,7 @@
     padding:1%;
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start33{
     font-size:26px;
@@ -66,6 +79,7 @@
     padding:1%;
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start44{
     font-size:26px;
@@ -74,6 +88,7 @@
     padding:1%;
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 .start55{
     font-size:26px;
@@ -82,6 +97,7 @@
     padding:1%;
     margin: 4.2px;
     padding: 0;
+    background-color: white;
 }
 
 .start1:hover{

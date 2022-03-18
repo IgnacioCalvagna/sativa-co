@@ -14,6 +14,10 @@ router.put('/updateRelation',  category.updateRelation)
 router.get('/getAll', category.getAll)
 router.get('/productcategories/:id', category.getCatsByProdId)
 
+router.get("/:id", category.getByCategId)
+router.delete("/:id", category.deleteByCategId);
+router.put('/:id', category.updateByCategId)
+
 // router.delete('/:id', category.delete);
 
 

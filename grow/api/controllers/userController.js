@@ -75,9 +75,17 @@ exports.adminPromote = (req, res) => {
 };
 
 exports.suprAdmin = (req, res) => {
-  const { id } = req.params;
-  User.findOne({ where: { id } }).then(user => {
-    res.send(user);
+  const { id } = req.body;
+  User.update(
+    { roleId: 1 },
+    {
+      where: { id },
+      returning: true,
+      plain: true,
+    }
+  ).then(result => {
+    console.log(result);
+    res.sendStatus(200);
   });
 };
 
