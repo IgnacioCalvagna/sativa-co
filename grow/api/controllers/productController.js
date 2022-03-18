@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
 const ProductComment = require("../models/ProductComment");
+const { Op } = require("sequelize");
 
 exports.getAll = (req, res) => {
   Product.findAll().then((products) => res.send(products));
@@ -69,17 +70,20 @@ exports.delete = (req, res) => {
 //// Productos I (categoria)
 
 exports.getByCategory = (req, res) => {
-  const { category } = req.params;
-  console.log(category);
+  const { id } = req.params;
 
-  Product.findAll({ where: { category } }).then((products) =>
-    res.send(products)
-  );
+  Category.findByPk(id)
+    .then(category => {
+      return category.getProductos();
+    })
+    .then(data => {
+      res.send(data);
+    });
 };
 
 exports.getByName = (req, res) => {
   const { name } = req.params;
-  Product.findAll({ where: { name } }).then((products) => {
+  Product.findAll({ where: { name: { [Op.iLike]: `%${name}%`} } }).then((products) => {
     res.send(products);
   });
 };
