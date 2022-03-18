@@ -13,6 +13,8 @@ const ProductValoration = require('./ProductValoration');
 
 
 ProductComment.belongsTo(Product);
+Product.hasMany(ProductComment)
+
 ProductValoration.belongsTo(Product);
 
 
@@ -58,4 +60,5 @@ module.exports = {
   ShoppingCart,
   ProductComment,
   ProductValoration,
+  Role
 };

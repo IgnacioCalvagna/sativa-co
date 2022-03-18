@@ -92,7 +92,7 @@ const EditProductForm = () => {
   return (
     <div className="container singleProductDiv">
       <h1 className="text-center product-name ">EDITAR PRODUCTO</h1>
-      <div className="row" style={{ justifyContent: "center" }}>
+      <div className="row" style={{ flexDirection: 'column', justifyContent: "center" }}>
         <form className="col-lg-7" onSubmit={handleSubmit}>
           <div className="d-flex flex-column labelAndInput">
             <label htmlFor="name">Nombre:</label>

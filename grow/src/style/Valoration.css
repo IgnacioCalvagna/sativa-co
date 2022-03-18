@@ -1,11 +1,17 @@
 .starts{
     padding: 5px;
-    width: 250px;
+    /* width: 250px; */
     height: 60px;
     transition: transform 0.3s;
     display: flex;
     background-color: white;
+    padding-left: 50px;
 }
+
+.starts > * {
+    background-color: white;
+}
+
 .start1{
     font-size:26px;
     border:none;

@@ -156,7 +156,7 @@ const Navbar = () => {
                           to={`/admin/categories`}
                           className='dropdown-item'
                         >
-                          Caterogías
+                          Categorías
                         </Link>
                       </li>
                     </ul>
@@ -178,6 +178,9 @@ const Navbar = () => {
               </a>
             </form>
           </div>
+          {user.id? <div>
+            <span>{user.name}</span>
+          </div> : null}
         </div>
       </nav>
 
