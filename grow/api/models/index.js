@@ -15,7 +15,9 @@ const ProductValoration = require('./ProductValoration');
 ProductComment.belongsTo(Product);
 Product.hasMany(ProductComment)
 
+
 ProductValoration.belongsTo(Product);
+Product.hasMany(ProductValoration);
 
 
 ShoppingCart.belongsTo(User);

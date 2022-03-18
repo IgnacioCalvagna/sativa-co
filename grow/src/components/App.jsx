@@ -10,7 +10,6 @@ import Footer from './Footer';
 import { persistUser } from '../state/user';
 import { getShoppingCart } from '../state/shoppingCart';
 
-import OrderItem from '../commons/OrderItem.jsx';
 import SingleProduct from '../commons/SingleProduct.jsx';
 import AdminUsers from './AdminUsers';
 import AdminOrders from './AdminOrders';
@@ -19,12 +18,16 @@ import NewProductForm from './NewProductForm';
 import EditProductForm from './EditProductForm';
 import { getItemCart } from '../state/itemCart';
 import OrderHistorial from './OrderHistorial';
-import OrderDetail from './OrderDetail';
+import CartDetails from './CartDetails';
 import FilterSearch from './FilterSearch';
 import NotFound from './NotFound';
+
 import AdminCategories from './AdminCategories';
 import NewCategForm from './NewCategForm';
 import EditCategForm from './EditCategForm';
+
+import OrderDetails from './OrderDetail';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -63,8 +66,9 @@ function App() {
         />
         <Route path='/products/popular' element={<FilterSearch products={products}/>} />
         <Route path='/orders/history' element={<OrderHistorial />} />
-        <Route path='/orders/item/:id' element={<OrderItem />} />
-        <Route path='/order/detail/:id' element={<OrderDetail />} />
+        <Route path='/CartDetails' element={<CartDetails />} />
+        <Route path='/orderDetails/:id' element={<OrderDetails />} />
+        
         <Route path='/product/:id' element={<SingleProduct />} />
         {user.roleId === 2 ? (
           <>
@@ -90,7 +94,7 @@ function App() {
             />
           </>
         ) : null}
-        <Route path='/*' element={<NotFound/>} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
       {/* </div> */}
       <Footer />

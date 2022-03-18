@@ -1,16 +1,16 @@
+import OrderDetailsHeader from '../commons/orders/OrderDetailsHeader';
 
-import FakeOrders from "../utils/FakeOrders.js";
-import CardOrderDetail from '../commons/CardOrderDetail';
+import '../style/OrderHistorial.css';
 
-import "../style/OrderHistorial.css";
 
-const OrderDetail = () => {
-    
+
+const OrderDetails = () => {
+
   return (
     <div className='orderContainer4'>
-              <CardOrderDetail data={FakeOrders} />
+      <OrderDetailsHeader />
     </div>
   );
 };
 
-export default OrderDetail;
+export default OrderDetails;

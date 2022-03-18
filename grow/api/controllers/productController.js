@@ -65,20 +65,20 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const { id } = req.params;
 
+
   Product.destroy({ where: { id } }).then((data) => res.sendStatus(202));
+
 };
 
 //// Productos I (categoria)
 
 exports.getByCategory = (req, res) => {
   const { id } = req.params;
-  console.log('id es', id)
+
+
 
   Category.findByPk(id, {include: {model: Product, as: 'productos'}})
     .then(category => {
-      console.log(`category es`, category)
-      console.log(`category products es`, category.productos)
-
       return category.getProductos();
     })
     .then(data => {

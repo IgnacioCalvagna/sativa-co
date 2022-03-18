@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import axios from "axios";
-import { addOrCreateItemCart } from "../state/itemCart";
-import { useDispatch, useSelector } from "react-redux";
-import Comments from "../components/Comments";
-import Valoration from "./Valoration";
-import "./SingleProduct.css";
+
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import axios from 'axios';
+
+import { addOrCreateItemCart } from '../state/itemCart';
+import { useDispatch, useSelector } from 'react-redux';
+import Comments from '../components/Comments';
+import Valoration from './Valoration';
+import './SingleProduct.css';
+import '../style/Sidebar.css';
+import '../style/Valoration.css'
 
 const SingleProduct = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
 
-  const [mainSrc, setMainSrc] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [comment, setComment] = useState([])
+  const [mainSrc, setMainSrc] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [valoration, setValoration] = useState(0)
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
@@ -21,7 +27,6 @@ const SingleProduct = () => {
 
   const handleOnclick = (productId, quantity) => {
     if (!user.id) {
-      console.log("aprete agregar a carrito perro");
       return;
     }
     dispatch(
@@ -38,6 +43,9 @@ const SingleProduct = () => {
       setProduct(res.data);
     });
   }, [id]);
+  useEffect(()=> {
+
+  })
 
   const handleImageClick = (event) => {
     setMainSrc(event.target.src);
@@ -111,22 +119,18 @@ const SingleProduct = () => {
           </div>
         </div>
 
-        <div className="col-lg-7 productInfoDiv" >
-          <div style={{width: '100%'}}>
-            <div className="d-flex buyDiv">
-              <div>
-                <h1 className="text-start product-name">{product.name}</h1>
-              </div>
-              <div className="columnRight">
-                <Valoration />
-              </div>
-            </div>
-            <div className="rating-div text-start">
-              <span className="rating-span">
-                <span className="ratingNumber-span">{"4"}</span>
-                <ion-icon name="star-outline"></ion-icon>
-              </span>
-              <span>{2} Reviews</span>
+
+        <div className='col-lg-7'>
+          <div>
+            <h1 className='text-start product-name'>{product.name}</h1>
+            <div className='rating-div text-start'>
+              <span className='rating-span'>
+                <span className='ratingNumber-span'>{valoration}</span>{' '}
+                <div className="star">
+                <ion-icon name='star'></ion-icon>
+                </div>
+              </span>{' '}
+              <span>{comment} Reviews</span>
             </div>
             <div className="product-price text-start d-flex">
               <span className="price">$ {product.price}</span>
@@ -142,7 +146,9 @@ const SingleProduct = () => {
               <div className="d-flex buyDiv">
                 <div className="d-flex">
                   <button
-                    className="btn btn-light"
+
+                    className='buttonQuantity buttonQuantity2'
+
                     onClick={() => {
                       if (quantity > 0) setQuantity(quantity - 1);
                     }}
@@ -158,7 +164,9 @@ const SingleProduct = () => {
                     onChange={(e) => setQuantity(e.target.value)}
                   ></input>
                   <button
-                    className="btn btn-light"
+
+                    className='buttonQuantity buttonQuantity2'
+
                     onClick={() => setQuantity(parseInt(quantity) + 1)}
                   >
                     +
@@ -173,9 +181,19 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
+
+          <div className='columnRight'>
+            <Valoration valoration={setValoration}/>
+            <button
+              className='btn btn-primary'
+              onClick={() => handleOnclick(product.id, quantity)}
+            >
+              Agregar a carrito
+            </button>
+          </div>
         </div>
       </div>
-      <Comments />
+      <Comments lengthComment={setComment}/>
     </div>
   );
 };

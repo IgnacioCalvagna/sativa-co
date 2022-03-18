@@ -5,6 +5,9 @@ exports.getAll = (req, res) => {
   const { id } = req.params;
   console.log('soy el role del userrrr', id);
 
+
+
+  
   if (id === '2' || id === '3') {
     User.findAll().then(users => res.send(users));
   } else {
