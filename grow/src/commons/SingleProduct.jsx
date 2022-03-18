@@ -15,7 +15,7 @@ const SingleProduct = () => {
 
   const [product, setProduct] = useState({});
 
-  const [comment, setComment] = useState([]);
+  const [comment, setComment] = useState(0);
   const [mainSrc, setMainSrc] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [valoration, setValoration] = useState(0);

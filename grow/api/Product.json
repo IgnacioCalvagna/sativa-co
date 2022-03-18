@@ -47,7 +47,10 @@
       "description": "No te da el sol, no importa, aca la solucion ",
 
       "price": 2500,
-      "stock": 23
+      "stock": 23,
+      "img": [
+        "https://paternalsrl.com.ar/wp-content/uploads/2020/05/720744-MLA41148561675_032020-F.jpg"
+      ]
     },
 
     {
@@ -55,7 +58,10 @@
       "description": "Bong de vidrio para mejorar tu experiencia 100% ",
 
       "price": 2500,
-      "stock": 5
+      "stock": 5,
+      "img": [
+        "https://www.gorigrow.com.ar/wp-content/uploads/2021/07/bong-silicona-24cm-scaled.jpg"
+      ]
     },
 
     {
@@ -63,7 +69,10 @@
       "description": "Para mejorar tu cultivo en interior logrando el microclima perfecto para tu planta",
 
       "price": 10000,
-      "stock": 15
+      "stock": 15,
+      "img": [
+        "https://www.elgrowshop.com.ar/wp-content/uploads/2021/02/1b8c4d_a5e414b00ddc4e55be1b213697ec6fa9_mv2-800x800.png.webp"
+      ]
     },
 
     {
@@ -71,34 +80,49 @@
       "description": "Vaporizador Da Vinci, lograras una experincia extraordinaria y saludable a la hora de fumar",
 
       "price": 41000,
-      "stock": 2
+      "stock": 2,
+      "img": [
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/220/151/products/diseno-sin-titulo-361-416f5f648eb9f664b116188607496186-480-0.png"
+      ]
     },
     {
       "name": "Fungicida",
       "description": "Controla los hongos en tus plantas mejorando la produccion, con productos organicos.",
 
       "price": 750,
-      "stock": 25
+      "stock": 25,
+      "img": [
+        "https://d2r9epyceweg5n.cloudfront.net/stores/001/564/492/products/trichodermas-cultivate1-661f47c64ab7c5ea0716269034105764-640-0.jpg"
+      ]
     },
     {
       "name": "Insecticida",
       "description": "Controla las plagas en tus plantas no dejes que afecten la produccion",
 
       "price": 789,
-      "stock": 25
+      "stock": 25,
+      "img": [
+        "https://http2.mlstatic.com/D_NQ_NP_993514-MLA45695863770_042021-O.webp"
+      ]
     },
     {
       "name": "Papelillo",
-      "description": "Fino papel de seda de conbustion lenta",
+      "description": "Fino papel de seda de combustion lenta",
 
       "price": 150,
-      "stock": 20
+      "stock": 20,
+      "img": [
+        "https://www.distrifull.com.ar/productos/786bf26f9543f33c35d69e078a0e4258_e22b63a8f154814cf61c777736fdbab6.jpg"
+      ]
     },
     {
       "name": "Papelillo de celulosa",
       "description": "Celulosa de combustion super lenta",
       "price": 250,
-      "stock": 20
+      "stock": 20,
+      "img": [
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/698/863/products/stamps-celulosa1-ebc57d7d0e03f58efa16214471939552-640-0.jpg"
+      ]
     },
     {
       "name": "Bong",
@@ -106,8 +130,7 @@
       "price": 2100,
       "stock": 26,
       "img": [
-        "https://i.pinimg.com/736x/f4/95/52/f49552c63e353a6c2b73eada2f8f4671.jpg",
-        "https://ae01.alicdn.com/kf/HTB1EVWFdwHqK1RjSZFEq6AGMXXa9.jpg"
+        "https://xmoks.com/wp-content/uploads/2021/07/Bong-Vidrio-Hookan-Calaveras-DyK-Morado.png"
       ]
     }
   ]
