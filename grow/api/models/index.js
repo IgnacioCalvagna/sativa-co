@@ -44,8 +44,8 @@ User.hasMany(OrderDetail);
 
 PaymentDetail.belongsTo(OrderDetail);
 
-Product.belongsToMany(Category, {as: 'productos', through: 'product_category'})
-Category.belongsToMany(Product, {as: 'categorias', through: 'product_category'})
+Product.belongsToMany(Category, {as: 'categorias', through: 'product_category'})
+Category.belongsToMany(Product, {as: 'productos', through: 'product_category'})
 
 
 module.exports = {

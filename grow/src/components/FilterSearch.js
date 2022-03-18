@@ -5,9 +5,10 @@ import axios from "axios";
 
 import "../style/FilterSearch.css";
 
-const FilterSearch = ({ products }) => {
+const FilterSearch = ({  }) => {
   const [allCategories, setAllCategories] = useState([]);
-  const [checkedState, setCheckedState] = useState({categ: ''});
+  const [checkedState, setCheckedState] = useState("");
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     axios
@@ -17,40 +18,32 @@ const FilterSearch = ({ products }) => {
         console.log(`categories es`, data);
         return data;
       })
-      // .then((categories) => {
-      //   console.log(`categories es`, data);
-      //   // let auxObj = {};
-      //   // categories.forEach((categObj) => {
-      //   //   auxObj[categObj.id] = false;
-      //   // });
-      //   // console.log(`auxobj es`, auxObj);
-      //   // setCheckedState(auxObj);
-      // });
+ 
   }, []);
 
   const handleOnChangeCheck = (e) => {
-    // const updatedCheckedState = { ...checkedState };
-    // console.log(`1`, updatedCheckedState);
-    // for (const property in updatedCheckedState) {
-    //   if (property == categ) {
-    //     updatedCheckedState[categ] = !updatedCheckedState[categ];
-    //   } else updatedCheckedState[categ] = false;
-    // }
-    // setCheckedState(updatedCheckedState);
-    // console.log(`2`, updatedCheckedState);
+ 
+    console.log(`event taget value es`, e.target.value)
+    let categId = e.target.value
+    
+    axios.get(`/api/product/category/${categId}`).then(res=>setProducts(res.data))
 
-    setCheckedState({categ: e.target.value})
+    setCheckedState(e.target.value)
     console.log(checkedState)
-    // axios.get("/api/product/");
   };
+
+  useEffect(() => {
+    axios.get('/api/product/').then(res => setProducts(res.data));
+  }, []);
 
   return (
     <div className="filterContainer1">
       <div className="filterAccordion">
-        {/* <Accordion>
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Category</Accordion.Header>
-            <Accordion.Body> */}
+            <Accordion.Body>
+            <form>
               {allCategories.map((category) => {
                 return (
                   <div>
@@ -58,6 +51,8 @@ const FilterSearch = ({ products }) => {
                       type="radio"
                       name={category.name}
                       value={category.id}
+                      checked={checkedState==category.id}
+                      id={category.name}
                       // checked={checkedState[category.id]}
                       onChange={handleOnChangeCheck}
                     />
@@ -65,20 +60,21 @@ const FilterSearch = ({ products }) => {
                   </div>
                 );
               })}
-            {/* </Accordion.Body>
+              </form>
+            </Accordion.Body>
           </Accordion.Item>
-        </Accordion> */}
+        </Accordion>
       </div>
       <div>
         <div className="pagination">
           <span>
-            {} Result(s) found for {}
+            {products.length} Result(s) found
           </span>
-          <div>
+          {/* <div>
             <button>1</button>
             <button>2</button>
             <button>3</button>
-          </div>
+          </div> */}
         </div>
         <Grid products={products} />
       </div>

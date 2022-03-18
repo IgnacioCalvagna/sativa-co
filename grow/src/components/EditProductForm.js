@@ -178,7 +178,9 @@ const EditProductForm = () => {
               <Link to="/admin/categories">
                 <button className="btn btn-light">Editar categorías</button>
               </Link>
+              <Link to="/admin/categories/new-category">
               <button className="btn btn-dark">Nueva categoría</button>
+              </Link>
             </div>
           </div>
           <div className="d-flex flex-column labelAndInput">

@@ -14,7 +14,7 @@ const Card = ({ data }) => {
             <img
               className='card-img'
               src={
-                data.img[0]
+                data.img
                   ? data.img[0]
                   : 'https://peugeot.navigation.com/static/WFS/Shop-Site/-/Shop/en_US/Product%20Not%20Found.png'
               }
