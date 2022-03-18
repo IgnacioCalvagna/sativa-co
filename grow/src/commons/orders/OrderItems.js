@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import '../../style/Comments.css';
 
 const OrderItems = () => {
   const navigate = useNavigate();
@@ -59,7 +60,9 @@ const OrderItems = () => {
           </div>
         </tbody>
       </Table>
-      <button onClick={handleBuy}>Checkout</button>
+      <button className='buttonComment buttonn' onClick={handleBuy}>
+        Checkout
+      </button>
     </div>
   ) : null;
 };

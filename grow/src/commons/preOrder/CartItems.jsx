@@ -81,7 +81,7 @@ const CartItems = ({ id }) => {
           </div>
         </tbody>
       </Table>
-      <button onClick={handleOnBuy}>Continue</button>
+      <button className="buttonComment buttonn" onClick={handleOnBuy}>Continue</button>
     </div>
   ) : null;
 };
