@@ -29,10 +29,17 @@ const AdminUsers = () => {
       });
     });
   };
+  const handleRemove = id => {
+    axios.put(`/api/user/admin/adminRemove`, { id }).then(() => {
+      axios.get(`/api/user/getAll/${user.roleId}`).then(res => {
+        setUsers(res.data);
+      });
+    });
+  };
 
   return (
     <div className='container usersTitleDiv'>
-      <h1 style={{paddingBottom: '40px'}}>Users</h1>
+      <h1 style={{ paddingBottom: '40px' }}>Users</h1>
       {/* <div className='searchFormDiv'>
         <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="searchUsersInput">Buscador de usuarios </label>
@@ -66,6 +73,7 @@ const AdminUsers = () => {
                 <td>
                   {usr.roleId === 2 || usr.roleId === 3 ? (
                     <button
+                      onClick={() => handleRemove(usr.id)}
                       className='btn btn-danger'
                       disabled={
                         user.id ? parseInt(user.id) === parseInt(usr.id) : true
